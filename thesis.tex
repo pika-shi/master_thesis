@@ -1,0 +1,56 @@
+\documentclass[master,english]{kuisthesis}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,enumerate,url}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage[dvips]{graphicx}
+
+\def\LATEX{{\rm (L\kern-.36em\raise.3ex\hbox{\sc a})\TeX}}
+\def\LATex{\iLATEX\small}
+\def\iLATEX#1{L\kern-.36em\raise.3ex\hbox{#1\bf A}\kern-.15em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}
+\def\LATEXe{\ifx\LaTeXe\undefined \LaTeX 2e\else\LaTeXe\fi}
+\def\LATExe{\ifx\LaTeXe\undefined \iLATEX\scriptsize 2e\else\LaTeXe\fi}
+\let\EM\bf
+\def\|{\verb|}
+\def\<{\(\langle\)}
+\def\>{\(\rangle\)}
+\def\CS#1{{\tt\string#1}}
+
+\jtitle{情報発信の対象限定性に基づくTwitterユーザの分類}
+\etitle[Twitter User Classification Based on Specificity of their
+Information Dissemination Target]
+	{Twitter User Classification Based on Specificity of their
+        Information Dissemination Target}
+\jauthor{竹村 光}
+\eauthor{Hikaru TAKEMURA}
+\supervisor{Professor Keishi Tajima}
+\date{February 7, 2014}
+\department{Social Informatics}
+
+\begin{document}
+\maketitle
+\input{abstract.tex}
+\tableofcontents
+
+\input{sec1_Introduction.tex}
+\input{sec2_RelatedWork.tex}
+\input{sec3_TargetSpecificity.tex}
+\input{sec4_ClassificationMethod1.tex}
+\input{sec5_ClassificationMethod2.tex}
+\input{sec6_Experiments.tex}
+\input{sec7_Conclution.tex}
+
+\acknowledgments
+I would like to express my sincere gratitude to my supervisor,
+Professor Keishi Tajima for his valuable advises and helpful
+discussions.  I deeply appreciate Proffessor Yasushi Sakurai and
+Associate Professor Yasuhito Asano for spending precious time for
+valuable discussions.  I would also like to thank the other lab members
+for their supports for our research.
+
+\nocite{*}
+\bibliographystyle{kuissort}
+\bibliography{thesis}
+
+\end{document}

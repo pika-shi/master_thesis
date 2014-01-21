@@ -1,0 +1,136 @@
+\section{Target Specificity of Twitter Users}
+\label{sec:Target Specificity}
+
+In this chapter, we discuss the target specificity of Twitter users, the
+measure of to what degree target scope of their information publishing
+is specified, and define it.  Then we also discuss why target scope of
+their information publishing is specified.
+
+\subsection{Definition of Target Specificity}
+\label{subsec:Definition}
+
+In this study, we consider the target specificity of Twitter users, as
+the measure of how much target scope of their information publishing is
+specified.  More formally, we define the \emph{target specificity} of a
+Twitter user as to what degree the user set considered to be included in
+target scope of his/her information publishing is inclining toward a
+part of all Twitter users, i.e., to what extent this user set deviates
+from the user set randomly sampled from all Twitter users.  In this
+paper, we express the target specificity of the Twitter user $u$ as
+$\mathit{TargetSpecificity}(u)$. This formula takes a range of $[0, 1]$.
+
+For example, a user who mainly publishes technical information about
+programming is supposed to publish information toward programmers.  So
+users who are interested in this information are inclining toward a part
+of Twitter users.  Thus, it may be considered that target specificity of
+the user is high.
+
+On the contrary, a user who publishes information about world news
+publishes information useful for the public widely.  So the public is
+supposed to be interested in this information, and the deviation between
+users who are interested in this information and users randomly sampled
+from all Twitter users may be very small.  Thus, it may be considered
+that target specificity of the user is low.
+
+As mentioned above, the target specificity of Twitter users is defined
+as to what extent this user set deviates from the user set randomly
+sampled from all Twitter users.  Thus, the fact that the target
+specificity of a user is high does not necessarily coincide with the
+fact that there is high similarity between users who are considered to
+be included in target scope of his/her information publishing each
+other.  For example, users considered to be included in target scope of
+information publishing of a user who publishes information about
+earthquake in a certain area are consistent in the area they live in,
+and so his/her target specificity is supposed to be high.  But their
+other characteristics such as age, sex, interests, communities they
+belong to, and so on vary from user to user.  Thus it is not be able to
+be said that they have high similarity each other.  In other words, even
+if there are various types of users in target scope of his/her
+information publishing, we consider that the target specificity of the
+user is high as long as the majority of users in the target scope are
+consistent in at least one attribute.
+
+In this paper, we determine a threshold $\delta$. If the target
+specificity of a user is higher than $\delta$, we call him/her a
+\emph{target user}, and if lower, we call him/her a \emph{non target
+user}.  More formally, we define them as follows:
+
+\vspace{-1ex}
+\[
+  \begin{cases}
+   u\mbox{ is a } target\mbox{ }user, & \mbox{if}\
+   \mathit{TargetSpecificity}(u) > \delta \\
+   u\mbox{ is a }non\mbox{ }target\mbox{ }user, & \mbox{otherwise}.
+  \end{cases}
+\]
+\vspace{-2ex}
+
+\subsection{Why Target Specificity is High}
+\label{subsec:The Causes}
+
+In this subchapter, we discuss what causes the target specificity of a
+Twitter user, i.e., why target scope of their information publishing is
+specified.  As a result of our analysis, this is roughly classified into
+two causes: $(1)$ topics of information and $(2)$ target users.  We
+discuss their two causes of the target specificity in the follow.
+
+\begin{description}
+\bf {\item[(1)] Specified topics of information extensionally}
+\label{item:Topic}
+\end{description}
+
+The first cause of the target specificity of a Twitter user is because
+he/she publishes information specified to a few topics extensionally
+whether or not he/she specifies target users of his/her information
+publishing.  For example, a user who mainly publishes technical
+information about programming is supposed to publish information to
+unspecified people, but it may be considered that target scope of
+his/her information publishing is specified because he/she specifies the
+topic of information: programming.  Furthermore, a user who mainly
+publishes information about a certain conference is supposed to publish
+information to the users who attend the conference or are interested in
+it.  Because of this, it may be considered that target scope of his/her
+information publishing is specified.
+
+The way to specify topics of information is roughly classified into two
+cases.  In the first case, a user specifies topics based on demographic
+data such as age, settled areas, sex, occupation, career, and so on.  It
+is able to be said that a user who publishes weather information in a
+certain area specifies topics based on demographic data.  In the second
+case, a user specifies topics based on psychographic data such as taste,
+hobby, values, and so on.  It is able to be said that a user who
+publishes information about cooking specifies topics based on
+psychographic data.
+
+\begin{description}
+\bf{\item[(2)] Specified target users extensionally}
+\label{item:User}
+\end{description}
+
+The second cause of the target specificity of a Twitter user is because
+he/she publishes information specified to some users extensionally
+whether or not he/she specifies topics of his/her publishing
+information.  For example, a user who communicates with his/her friends
+publishes various contents of information, but it may be considered that
+target scope of his/her information publishing is specified because
+he/she specifies target users extensionally, i.e., he/she publishes
+information to the closed users: his/her friends.  Furthermore, a user
+who mainly gets in touch with members of a certain club publishes
+information to the closed users specified extensionally: the club
+members.  Because of this, it may be considered that target scope of
+his/her information publishing is specified.
+
+Sometimes, both $(1)$ and $(2)$ cause the target specificity of a Twitter
+user simultaneously.  For example, a user who publishes information to
+the members of the artist's fan club publishes information specified not
+only target users of his/her information publishing: the members of
+artist's fan club, but also the topic of information: the latest news
+about the artist and so on.  Furthermore, it is also true in case of the
+user who notifies students of a certain university of the news toward
+them because he/she publishes information specified target users of
+his/her information publishing: students of the university, and the
+topics of information the news toward them.  And also, some users use
+Twitter for the both purpose of publication information of a certain
+topic and communication with their friends.  It is able to be said that
+such users are also an example of the case that both $(1)$ and $(2)$
+cause the target specificity of a Twitter user simultaneously.

@@ -1,0 +1,13 @@
+.DS_store
+*~
+*.aux
+*.bbl
+*.blg
+*.log
+*.toc
+*.bst
+*.sty
+*.cls
+*.dvi
+*/
+!/images

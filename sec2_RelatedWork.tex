@@ -1,0 +1,185 @@
+\section{Related Work}
+\label{sec:Related Work}
+
+With explosive widespread use of microblogging services, Studies about
+them have recently become frequency performed.  There are wide range of
+contents of studies of microblogging services, e.g., studies of the
+classification microblogging messages from various point of
+view\cite{irani2010study}, studies of ranking microblogging messages by
+the content relevance and so on\cite{duan2010empirical}, or studies
+focusing on real-time nature of migroblogging
+services\cite{takemura2012tweet,mathioudakis2010twittermonitor}.
+
+In this study, we focus on the fact that Twitter is used for a variety
+of purposes. We attempt to classify Twitter users based on the
+wideness of target scope of their information publishing, and apply this
+classification scheme on Twitter search and so on.  We explain the
+following previous studies: studies about the purpose of use of
+microblogging services in \ref{subsec:Purpose of Use}, studies of
+classifying Twitter users and measuring their influence in
+\ref{subsec:Twitter User}, studies useful for finding microblogging
+messages related to only certain Twitter users in \ref{subsec:Some
+User}, and studies about Twitter search in \ref{subsec:Twitter Search}.
+We make the position of this study clear by introducing these studies.
+
+\subsection{Purpose of Use of Microblogs}
+\label{subsec:Purpose of Use}
+
+There has been many studies about the purpose of use of microblogging
+services. Java et al.\cite{java2007we} analyzed the topological and
+geographical structure of Twitter's social network and attempted to
+understand the user intentions and community structure in microblogging
+services.  As a result, they found that the main types of user
+intentions are daily chatter, conversation, sharing information and
+reporting news.  Kwak et al.\cite{kwak2010twitter} reported that Twitter
+is used both as a social network service and as a media for
+disseminating or gathering information, and in its follower-following
+topology analysis they have found a non-power-law follower distribution,
+a short effective diameter, and low reciprocity, which all mark a
+deviation from known characteristics of human social networks.  There
+are many studies about the purpose of use of microblogging services
+other than these\cite{wu2011says,zhao2009and}.
+
+And also, Ehrlich et al.\cite{ehrlich2010microblogging} conducted a
+content analysis and examined the use of public microblogging services
+(Twitter) for public and private use by comparing internal and external
+microblogging services (in the workspace).  As a result, there were
+significant differences in content.  The internal microblogging services
+were generally used to solicit technical assistance or as part of a
+conservation.  The external microblogging services were used for status
+updates and to share general information.
+
+In recent years, Twitter, one of public microblogging services, is often
+used for not only publishing information to the public but also having a
+relationship to only a certain community.  It is able to be said that
+this study focuses on the fact that we use Twitter for a variety of
+purposes like this.
+
+\subsection{Classification of Twitter Users and Measuring their Influence}
+\label{subsec:Twitter User}
+
+There are many other studies focusing on Twitter users, e.g., studies of
+classification them from various point of view, and studies which measure
+their influence.
+
+Studies focusing on classification of Twitter users are performed
+frequently and they have a wide variety of classification schemes, e.g.,
+classification them based on their attributes such as political
+orientation or ethnicity by leveraging observable information such as
+the user behavior, network structure, and linguistic content of their
+posting messages\cite{pennacchiotti2011machine}, classification them
+into spam users or not by extracting observable features from the
+collected candidate spam profiles, e.g., number of friends, text on the
+profile, age, and so on\cite{lee2010social}, and classification them
+into human users, bots, and cyborgs using entropy measures, machine
+learning, and so on\cite{chu2010tweeting}.  Bots refer to automated
+programs posting on Twitter, and cyborgs refer to either bot-assisted
+humans or human-assisted bots, i.e., interweave characteristics of both
+humans and bots.
+
+The classification scheme proposed by Yan et
+al.\cite{yan2013classifying} deeply relates to ours.  They proposed
+methods to classify Twitter users into open accounts.  An account is the
+account with a purpose for advertising or spreading information such as
+a shop, a singer, a news agency, and so on.  And a closed account is the
+account with a purpose for making friends or communication such as a
+user who publishes messages about daily log, feeling show, and so on.
+This classification scheme is close to ours, but does not coincide with
+ours because open accounts don't often publish information to the public
+widely, e.g., an account who publishes very technical information about
+programming toward unspecified users.
+
+In microblogging services like Twitter or other social network services
+like Facebook, users correspond to nodes in social network graphs. As
+well as the classification of users, i.e., nodes in the graphs, the
+classification of edges, i.e., relationship between a user and his
+followers, is related to our study. Leskovec et
+al.\cite{leskovec2010predicting,leskovec2010signed} classify edges in
+SNS to positive edges such as friendship, and negative edges such as
+antagonism. Kunegis et al.\cite{kunegis2009slashdot} also use positive
+edges and negative edges in Slashdot, a message board service, in order
+to rank the users. Cheng et al.\cite{cheng2011predicting} and Hopcroft
+et al.\cite{hopcroft2011will} studied the problem of predicting
+reciprocity between two given Twitter users.
+
+There are also studies focusing on measuring influence of Twitter
+users.  Cha et al.\cite{cha2010measuring} analyzed the influence of them
+by employing three measures that capture different perspectives:
+indegree, retweets, and mentions.  Then they measured the dynamics of
+influence across topic and time.  If target specificity of Twitter users
+defined in this study is high, there is a high probability that they
+have a big influence on Twitter, but how target specificity of a user is
+high does not necessarily coincide with how big his influence is. And
+Jianshu et al.\cite{weng2010twitterrank} focused on the problem of
+identifying influential users of microblogging services.
+
+\subsection{Find Messages Related to Some Twitter Users}
+\label{subsec:Some User}
+
+There are also studies useful for finding of microblogging messages
+related to only a part of Twitter users.
+
+Sakaki et al.\cite{sakaki2010earthquake} proposed a method of monitoring
+messages in Twitter and detecting occurrences of a specific kind of event
+in the real world, such as earthquakes or typhoons.  They produced a
+probabilistic spatiotemporal model for the target event that can find
+the center and the trajectory of the event location.  Ikawa et
+al.\cite{ikawa2012location} attempt to discover the location where a
+message was generated by using its textual content.  They learned
+associations between a location and relevant keywords from past
+messages, and guess where a new message came from.  It is able to be
+said that these studies are useful for finding messages in Twitter
+related to a certain geographical area.
+
+Sriram et al.\cite{sriram2010short} proposed approach effectively
+classifies the message to a predefined set of generic classes such as
+News, Events, Opinions, Deals, and Private Messages.  They proposed to
+use a small set of domain-specific features extracted from the user's
+profile and text.  Nishida et al.\cite{nishida2011tweet} proposed a
+method that uses data compression for classifying an unseen tweet as
+being related to an interesting topic or not.  It is able to be
+said that these studies are useful for finding messages in Twitter
+specified to certain topics.
+
+As mentioned above, there are studies useful for finding microblogging
+messages related to only a part of Twitter users in various points of
+view.  But these points of view exist in great number, so it is not an
+effective approach to find these messages from each point of view.
+Thus in this study, we attempted to measure wideness of target scope of
+information publishing of a Twitter user in an integrated way.  And
+also, we roughly classify various reasons that target specificity is
+high into two categories.
+
+\subsection{Twitter Search}
+\label{subsec:Twitter Search}
+
+The characteristic of search on microblogging services is different
+from that of Web search\cite{broder2002taxonomy} in that search on
+microblogging services can get information in real
+time\cite{busch2012earlybird} and not only information published by the
+mass media but also much casual information published by
+individuals\cite{java2007we}.  Thus, a purpose of use of search on
+microblogging services often becomes a subject of study.
+
+Teevan et al.\cite{teevan2011twittersearch} observed that people use
+Twitter search to find temporally relevant information, e.g., breaking
+news, real-time content, and popular trends, and information related to
+people, e.g., content directed at the searcher, information about
+people of interest, and general sentiment and opinion.  Furthermore,
+they compared Twitter search with Web search and found that search
+results on Twitter included more social chatter and social events, and
+those on the Web included more basic fact and navigation content.
+Massoudi et al.\cite{massoudi2011incorporating} proposed a retrieval
+model for searching messages on microblogging services for a given topic
+of interest and a dynamic query expansion model for messages retrieval.
+And Nagamoti et al.\cite{nagmoti2010ranking} described several
+strategies for ranking messages of microblogging services in a
+real-time search engine.
+
+As mentioned above, there are many studies about search on microblogging
+services, and contents of them are greatly various.  In this study, we
+focus on the purpose of use of microblogging services, and attempt to
+apply it to Twitter Search.  It is able to be said that this study also
+focuses on search on microblogging services just like studies explained
+above, but there has not been studies based on wideness of target scope
+of information publishing of a user so far.

@@ -1,0 +1,245 @@
+\section{Experiments and Discussions}
+\label{sec:Experiment}
+
+In this chapter, we conduct experiments to evaluate our methods proposed
+in \ref{sec:Approach}, and present the results obtained from them.  In
+addition, we discuss our methods based on the results.
+
+\subsection{Data Set}
+\label{subsec:Data Set}
+
+We collected the data set from the real Twitter data by using Twitter
+API.
+
+We first randomly selected 1,000 Twitter users whose timezone is Japan.
+At this time, we omitted users who are followed from nobody and who post
+no tweet in order to select only active users.  Then, we divided them in
+two sets equally, i.e., each of which include 500 users.
+
+Second, we had 6 experienced Twitter users as participants, all of whom
+are male graduate students in engineering, from 23 to 25 years old.  We
+assigned each set to 3 participants, and we asked each participant to
+determine one of the following categories each user in the assigned set
+is supposed to be in:
+
+\begin{description}
+\item[(i)] the user publishes information to the public widely,
+\item[(ii)] the user publishes information specified for certain topics,
+\item[(iii)] the user publishes information to the users specified
+           extensionally, and
+\item[(iv)] the user publishes information (ii) specified for certain
+           topics (iii) to the users specified extensionally.
+\end{description}
+
+\noindent{These categories correspond to the category (b), (1), (2), (3)
+in Figure~\ref{fig:Flow} respectively.}
+
+Then, we selected users whose category at least 2 out of 3 participants
+coincide with, and as a result, we were able to collect 93, 320, 375,
+and 30 users in the category (i), (ii), (iii), and (iv).  We randomly
+selected 90 users from the category (i), and 30 users from (ii), (iii),
+and (iv) respectively.  We collected these 180 users in total, and we
+used them as the data set.  Table~\ref{breakdown} shows the breakdown of
+the data set: average and standard deviation of numbers of followers,
+ followees, and tweets in each category.
+
+\newcolumntype{I}{!{\vrule width 1.5pt}}
+\newcommand{\bhline}[1]{\noalign{\hrule height #1}}
+\begin{table}[t]
+\caption{Average and standard deviation of numbers of followers,
+ followees, and tweets in each category \label{breakdown}}
+\begin{center}
+\begin{tabular}{c|cIc|c|c|c}
+\multicolumn{2}{cI}{} & \makebox[4em]{i} & \makebox[4em]{ii} &
+ \makebox[4em]{iii} & \makebox[4em]{iv} \\ \bhline{1.5pt}
+ \multirow{2}{*}{follower} & average & 475,679 & 58,142 & 573 & 82,942  \\
+ & standard deviation & 535,894 & 171,784 & 1,389 & 262,161 \\ \hline
+ \multirow{2}{*}{followee} & average & 11,274 & 3,353& 598 & 1,568 \\
+ & standard deviation & 37,906 & 7,218 & 1,545 & 3,594 \\ \hline
+ \multirow{2}{*}{tweet} & average & 9,763 & 9,992 & 8,829 & 5,677 \\
+ & standard deviation & 14,607 & 23,572 & 29,505 & 6,600 \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[t]
+\caption{Average and standard deviation of numbers of followers,
+ followees, and tweets in each category \label{ClassifierResults}}
+\begin{center}
+\begin{tabular}{cIc|cccc}
+Removed Feature & \makebox[4em]{with all} & \makebox[3em]{i} &
+ \makebox[3em]{ii} & \makebox[3em]{iii} & \makebox[3em]{iv} \\
+ \bhline{1.5pt}
+ 3-class SVM & 65.6 & 64.4 & 62.2 & 63.3 & {\bf 56.7}  \\ \hline
+ 2 binary SVMs & 67.8 & 65.6 & 68.9 & {\bf 73.3} & {\bf 63.3}  \\ \hline
+ 3-class decision tree & 54.4 & 54.4 & 46.7 & 48.9 & 50.0 \\ \hline
+ 2 binary decision trees & 50.0 & 52.2 & 46.7 & 45.6 & 51.1  \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[t]
+\caption{Average and standard deviation of numbers of followers,
+ followees, and tweets in each category \label{breakdown}}
+\begin{center}
+\begin{tabular}{c|cIc|cccc}
+\multicolumn{2}{cI}{Removed Feature} & \makebox[4em]{with all} &
+ \makebox[3em]{i} & \makebox[3em]{ii} &  \makebox[3em]{iii} &
+ \makebox[3em]{iv} \\ \bhline{1.5pt}
+ \multirow{2}{*}{SVM} & \makebox[4em]{topic} & 82.2 & 81.1 & 84.4 & {\bf
+                     86.7} & 81.1  \\
+ & user & 85.6 & 84.4 & 84.4 & {\bf 86.7} & 82.2 \\ \hline
+ \multirow{2}{*}{decision tree} & topic & 68.9 & 68.9 & 68.9 & 70.0 & 74.4 \\
+ & user & 75.6 & 76.7 & 74.4 & 71.1 & 70.0 \\
+\end{tabular}
+\end{center}
+\end{table}
+
+Then, for each user, we collected at most 1,000 followers of the user,
+and in regard to the followers who follow at most 1,000 users, we also
+collected their followees.  We used them in order to evaluate our
+methods.
+
+\subsection{Experimental Settings and Libraries}
+\label{subsec:Settings}
+
+First, we conducted the experiments evaluating the method of classifying
+Twitter users based on the target specificity of their information
+publishing.  We used 90 users classified into the category (i) as target
+users, and 90 users classified into the category (ii), (iii), and (iv)
+as non target users.  We first computed
+$\mathit{SpecificityScore}_{{\mathit{term}}}(u)$ and
+$\mathit{SpecificityScore}_{{\mathit{followee}}}(u)$ for each user $u$,
+and computed $\mathit{TargetSpecificity}(u)$ based on the above scores.
+Then, we determined a threshold $\delta$ which can classifies target
+users and non target users accurately the most, and evaluated the
+classification results with $\delta$.  When computing
+$\mathit{TargetSpecificity}(u)$, we used two models: the probabilistic
+model and the subtracting model mentioned in \ref{subsubsec:Scoring},
+and compared them.
+
+Second, we conducted the experiments evaluating the method of determing
+why the target specificity of the user is high in regard to the target
+user.  We extracted users from the category (ii), (iii), and (iv) by 30
+users, and used 90 users in total.  We first extracted features
+mentioned in \ref{subsec:Classification Step2} from the user.  Then,
+based on these features, we constructed 3-class classifiers which
+classify users into three categories: (ii), (iii), and (iv), and
+evaluated the classification results using 10-fold cross validation.  We
+used two learning algorithms: SVM and the decision tree as classifiers,
+and compared them.  For SVM, we used
+LIBSVM\footnote{\url{http://www.csie.ntu.edu.tw/~cjlin/libsvm/}}, which
+is a popular SVM library, with the Gaussian kernel.  For the decision
+tree, we used scikit-learn
+\footnote{\url{http://scikit-learn.org/stable/modules/tree.html}}.
+
+We used twpro search API\footnote{\url{http://twpro.jp/doc/api/search}}
+in order to get a number of users who have a certain term in their
+profiles.  We also used
+MeCab\footnote{\url{http://mecab.sourceforge.net/}} for morphological
+analysis of Japanese sentences in profiles, local information, and
+tweets of $u$.  Furthermore, we used
+gensim\footnote{\url{http://radimrehurek.com/gensim/}} for using Latent
+Dirichlet Allocation (LDA).
+
+実験結果を図\ref{demography}，図\ref{follow}，図\ref{pr}に示す．
+図\ref{demography}は，プロフィール・位置情報を用いて対象限定性を表した手法，図
+\ref{follow}は，フォローの傾向を用いて対象限定性を表した手法を表しており，
+それぞれスコアの高いものからソートしている．図\ref{pr}は，上記の二つの手
+法で求めたスコアをそれぞれ降順にソートし，ターゲット型ユーザを正解
+とした場合の，適合率・再現率曲線を表している．また，適合率・再現率曲線の
+ベースラインとして，20件のユーザそれぞれのフォロワー数を昇
+順にソートし，同じくターゲット型ユーザを正解としたものを用いている．
+
+フォロワー内でのプロフィール・位置情報を用いた手法に関しては，図
+\ref{demography}に示すように，ターゲット型ユーザの方が，非ターゲット
+型ユーザよりも，対象限定性を表すスコアが高くなっており，これらを明確に分
+類することができているといえる．また，図\ref{pr}に示すように，適合
+率・再現率曲線も，ベースラインを上回っている．これらの結果より，プロフィー
+ル・位置情報を用いて対象限定性を表す手法は，ターゲット型ユーザと非ターゲッ
+ト型ユーザを分類するのに有効であるといえる．
+
+フォロワー内でのフォローの傾向を用いた手法に関しても，図\ref{follow}に示
+すように，ターゲット型ユーザの方が非ターゲット型ユーザよりも，対象限定性
+を表すスコアが平均的に高くなった．しかし，これら二つの間の差は大きくなく，
+適合率・再現率曲線に関しては，図\ref{pr}に示すように，ベースライン
+を下回る結果となった．これらの原因としては，以下のようなものが考えられる．
+\vspace{1ex}
+
+
+{\bf(1)} 本実験では，フォロワーのフォローの傾向を用いた手法の中で，Twitter
+       の日本人ユーザ全体でのフォローの頻度$\mathit{uf}$を求めているが，
+       実際には，Twitterに登録しているものの，ほとんど利用していないユー
+       ザも多く存在する．そのようなユーザの影響で，$\mathit{uf}$が必要以
+       上に小さくなってしまっており，最終的なスコアに十分反映されていな
+       いと考えられる．今後は，Twitterユーザ全体ではなく，Twitterのアクティブユーザ
+       のみの中からフォローの頻度を求めることで，本問題の改善を図る予定
+       である．\vspace{1ex}
+
+{\bf(2)} フォロワー内に強く一貫した傾向がなくても，フォローに共通の傾
+       向が見られる場合があると考えられる．本実験において，社会のニュー
+       スを発信するユーザのフォロワーの多くが，社会のニュースを発信する
+       別のユーザを同時にフォローしているというケースが見られたが，実際
+       には，フォロワー内に社会のニュースに興味があるという弱い一貫性は
+       あるものの，強く一貫した傾向は見られなかった．\vspace{1ex}
+
+\subsection{実験結果の詳細と分析}
+\label{sec:detail}
+
+本節では，実験結果から，正解データとして用いたユーザの分析を行った結果を
+示す．表\ref{detail}に，正解データ内のターゲット型ユーザ・非ターゲット型
+ユーザのうち，各2ユーザの詳細を表している．各ユーザそれぞれに関して，
+\ref{sec:Determine Specificity}節で定義した$\mathit{tf}$が高い3語と，
+$\mathit{ff}$が高い3ユーザを示し，実験結果におけるそれらのスコアを示して
+いる．
+
+ターゲット型ユーザである@minnanomachi(写真に関するプロジェクトのア
+カウント)に関しては，「写真」や「カメラ」といった語のスコアや，カメラ関連
+のアカウントのスコアが高くなっており，そのアカウントを特徴付けるような結
+果が得られているといえる．同様にターゲット型ユーザである@USJ\_BGM(USJに
+関するアカウント)に関しても，「USJ」といった語のスコアや，USJ関連のアカ
+ウントのスコアが高くなっている．また，「好き」といった一般に出現頻度の高
+い語や，@masason(孫正義)といった広く一般に知られているユーザは，
+$\mathit{tf}$や$\mathit{ff}$が高くなっているが，$\mathit{df}$や
+$\mathit{uf}$によりそれらのスコアは下がっており，最終的なスコアは非常に小
+さくなっていることが分かる．
+
+非ターゲット型ユーザに関しては，「大好き」や「フォロー」といった，一般に
+出現頻度の高い語や，@pamyurin(きゃりーぱみゅぱみゅ)や@TDR\_PR(東京
+ディズニーリゾートに関するアカウント)といった，広く一般に知られているユー
+ザが抽出されているが，$\mathit{df}$や$\mathit{uf}$によりこれらのスコアは
+下がっている．特に，プロフィール・位置情報を用いた手法のスコアは全て0となって
+いる．
+
+このように，これらの例に関しては，フォロワー集合の中で特徴のある語やフォ
+ローの傾向を抽出することができており，提案手法が有効であるといえる．ただ
+し，現在の手法では，「写真」と「カメラ」というような同じトピックに関する
+語を，完全に独立なものとして扱っている．このような語を関連付けて考え，対
+象限定性を求める有効性を向上させることが今後の課題である．
+
+\subsection{アプリケーションの実装}
+\label{sec:Application}
+
+本節では，本研究の提案手法を応用した，実装予定のアプリケーションについて
+述べる．
+
+本アプリケーションは，提案手法に基づき，Twitterの検索結果を3つのタブに分
+類することで，ユーザのTwitter検索を支援するものである．以下に，表示する3
+つのタブついてそれぞれ示している．\vspace{1ex}
+
+{\bf (1)} 対象範囲が広いユーザの記事を表示する．ある内容に関する一般的な
+ニュースのように，広く一般のユーザが興味を示すような記事を得ることができ
+る．\vspace{1ex}
+
+{\bf (2)} あるトピックに特化された情報を発信するユーザの記事を表示する．ある
+イベントなどに関する具体的な情報や，あるトピックに関する専門的な情報を得るこ
+とができる．\vspace{1ex}
+
+{\bf (3)} クローズドなユーザ集合に情報を発信するユーザの記事を表示する．
+ある内容に関する一般ユーザの反応などといった，個人のつぶやきなどを得る
+ことができる．\vspace{1ex}
+
+このように分類することで，自分の求めている情報を効率よく取得することがで
+きると考えている．また，\ref{sec:Elements}節で，あるトピックに特化されており，
+かつクローズドなユーザ集合に情報を発信するユーザが存在する旨を述べたが，
+そのような記事は，上記の(2)と(3)の両方のタブに表示する予定である．
