@@ -1,34 +1,12 @@
-\section{Classification Methods}
-\label{sec:Approach}
+\section{Classifying Users Based on Target Specificity}
+\label{sec:ClassificationMethod1}
 
 In this chapter, we explain the method of classifying Twitter users
 based on the target specificity of their information publishing defined
-in \ref{sec:Target Specificity}.  In addition, in regards to Twitter
-users classified into ``the target specificity is high'' by the above
-method, we explain the method of determining why their target
-specificities are high based on the result of our analysis mentioned in
-\ref{subsec:The Causes}.
+in \ref{sec:Target Specificity}.
 
-Figure~\ref{fig:Flow} shows the overall flow of our methods.  First, we
-apply the method explained in \ref{subsec:Classification Step1} to
-Twitter users and classify them into two categories: (a) the target
-specificity is high, and (b) the target specificity is low.  Second, we
-determine why their target specificities are high and apply the method
-explained in \ref{subsec:Classification Step2} to a set of users
-classified into ``the target specificity is high'' by the above method.
-Then we classify them into three categories: (1) they publish
-information specified for certain topics, (2) they publish information
-to the users specified extensionally, and (3) in the cause of both (1)
-and (2).
-
-\subsection{Classifying Users Based on Target Specificity}
-\label{subsec:Classification Step1}
-
-In this subchapter, we explain the method of classifying Twitter users
-based on the target specificity of their information publishing.
-
-\subsubsection{Assumptions and Classification Algorithm}
-\label{subsubsec:Algorithm}
+\subsection{Assumptions and Outline of the Method}
+\label{subsec:Assumptions}
 
 In this study, we assume that a follower set of a Twitter user is the
 user set randomly sampled from users included in target scope of his/her
@@ -52,16 +30,6 @@ in the character noticeable $A$.  In such a case, his/her followers are
 supposed to incline toward a part of all Twitter users, thus we consider
 that the more consistent his/her followers are in a certain noticeable
 character, the higher his/her target specificity is.
-
-{\footnotesize
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=14cm]{images/flow.eps}
- \caption{Overall flow of our methods}
-\label{fig:Flow}
-\end{center}
-\end{figure}
-}
 
 In addition to this parameter: whether followers of a user are
 consistent in a certain noticeable character or not, we consider
@@ -101,21 +69,25 @@ The target specificity of a user is quite high when his/her followers
 are consistent in one noticeable character, and it becomes lower as they
 do not become consistent in any noticeable character.
 
-Next, we explain the algorithm of computing a score of the target
-specificity of a user $u$.
+\subsection{Classification Algorithm}
+\label{subsec:Algorithm}
+
+In this subchapter, we explain the algorithm of computing a score of the
+target specificity of a user $u$ based on the outline mentioned in the
+above subchapter.
 
 First, we collect all consistency subsets included in $u$'s follower set
 $F_u$.  Then, in regard to each subset $S_{F_uc}$ which is consistent in
 the character $c$ included in $F_u$, we compute
 $\mathit{SubsetScore}(S_{F_uc})$ which denotes to what degree users in
 $S_{F_uc}$ are consistent in $c$. We will propose two models which
-compute $\mathit{SubsetScore}(S_{F_uc})$ in \ref{subsubsec:Scoring}.
+compute $\mathit{SubsetScore}(S_{F_uc})$ in \ref{subsec:Scoring}.
 
 Second, in descending order of $\mathit{SubsetScore}(S_{F_uc})$, we give
 this score to each follower $f$ in $S_{F_uc}$ as
 $\mathit{UserScore}_{\mathit{att}}(f)$, where $\mathit{att}$ means a
 attribute measuring consistency, and we explain two attributes in
-\ref{subsubsec:Attributes}. Here, we do not give a score to $f$ if
+\ref{subsec:Attributes}. Here, we do not give a score to $f$ if
 he/she already has a score. Then, we repeat this step over all
 $\mathit{SubsetScore}(S_{F_uc})$.  In regard to users who are not given
 a score after the above repeat, we set $0$ to them.  In other words, in
@@ -170,24 +142,23 @@ is a summary of the algorithm:
 \begin{description}
 \item[1.]  we collect all consistency subsets including the follower set,
 \item[2.]  we score each consistency subset based on to what degree users
-           in it are consistent in a certain noticeable character
+           in it are consistent in a certain noticeable character,
 \item[3.]  in descending order of the above score, we repeatedly give it
            to each user in the subset, and
 \item[4.]  we take average of scores for a score of the target
            specificity.
 \end{description}
 
-\subsubsection{Scoring Models of Consistency Subsets}
-\label{subsubsec:Scoring}
+\subsection{Scoring Models of Consistency Subsets}
+\label{subsec:Scoring}
 
-In this subsubchapter, we explain a couple of models: (i) the
-probabilistic model and (ii) the subtracting model which compute
-$\mathit{SubsetScore(S_{F_uc})}$ mantioned in \ref{subsubsec:Algorithm}.
+In this subchapter, we explain a couple of models: the probabilistic
+model and the subtracting model which compute
+$\mathit{SubsetScore(S_{F_uc})}$ mantioned in \ref{subsec:Algorithm}.
 We explain these two models in the follow.
 
-\begin{description}
-\bf {\item[(i)] Probabilistic Model}
-\end{description}
+\subsubsection{Probablistic Model}
+\label{subsubsec:Probablistic}
 
 In this model, in regard to the consistency subset $S_{F_uc}$ which is
 consistent in the character $c$ in the follower set $F_u$, we consider
@@ -266,9 +237,8 @@ Then, we compute $\mathit{SubsetScore(S_{F_uc})}$ by the formula below:
 This is how we compute $\mathit{SubsetScore(S_{F_uc})}$ by using
 probabilistic technique.
 
-\begin{description}
- \bf {\item[(ii)] Subtracting Model}
-\end{description}
+\subsubsection{Subtracting Model}
+\label{subsubsec:Subtracting}
 
 In this model, in regard to the consistency subset $S_{F_uc}$, we
 consider a covering rate of $S_{F_uc}$ to $F_u$ in comparison to a
@@ -302,18 +272,17 @@ simultaneously as follows:
 This is how we compute $\mathit{SubsetScore(S_{F_uc})}$by using
 subtracting technique.
 
-\subsubsection{Attributes for Extracting Consistency Subsets}
-\label{subsubsec:Attributes}
+\subsection{Attributes for Extracting Consistency Subsets}
+\label{subsec:Attributes}
 
 In this subsubchapter, we explain a couple of attributes measuring
-consistency: (i) common terms in profiles and location information, and
-(ii) common followees.  By using these attributes, we extract
-consistency subsets from the follower set of a user.  We explain these
-two attributes in the follow.
+consistency: common terms in profiles and location information and
+common followees.  By using these attributes, we extract consistency
+subsets from the follower set of a user.  We explain these two
+attributes in the follow.
 
-\begin{description}
- \bf {\item[(i)] Common Terms in Profiles and Location Information}
-\end{description}
+\subsubsection{Common Terms in Profiles and Location Information}
+\label{subsec:Terms}
 
 As the first attribute measuring consistency, we consider common terms
 included in profiles and local information of users in the follower set.
@@ -338,10 +307,8 @@ which is consistent in the term $t$ in $F_u$ by the formula below:
 of $f$.  This is how we extract consistency subsets by using common
 terms in profiles and location information.}
 
-
-\begin{description}
- \bf {\item[(ii)] Common Followees}
-\end{description}
+\subsubsection{Common Followees}
+\label{subsec:Followees}
 
 As the second attribute measuring consistency, we consider common
 followees of users in the consistency subset.
@@ -368,7 +335,7 @@ which is consistent in the followee $e$ in $F_u$ by the formula below:
 \noindent{where $E_f$ is the followee set of $f$.  This is how we extract
 consistency subsets by using common followees.}
 
-\subsubsection{Final Classification Based on Target Specificity}
+\subsection{Final Classification Based on Target Specificity}
 \label{subsubsec:Final Classification}
 
 In this subsubchapter, we explain the method of computing the target
@@ -377,7 +344,7 @@ point.  In addition, based on the target specificity, we explain the
 method of classifying users.
 
 The $\mathit{SpecificityScore}_{{\mathit{att}}}(u)$ computed in
-\ref{subsubsec:Algorithm} is higher in the cases that
+\ref{subsec:Algorithm} is higher in the cases that
 
 \begin{itemize}
 \item the more consistent followers of a user are in a noticeable
@@ -389,11 +356,11 @@ The $\mathit{SpecificityScore}_{{\mathit{att}}}(u)$ computed in
 Then, we compute a score of the target specificity of $u$. We first
 compute $\mathit{SpecificityScore}_{{\mathit{term}}}(u)$, which is using
 common terms in profiles and location information as an attribute
-measuring consistency mentioned \ref{subsubsec:Attributes} (i), and
+measuring consistency mentioned in \ref{subsec:Terms}, and
 $\mathit{SpecificityScore}_{{\mathit{followee}}}(u)$, which is using
-common followees mentioned \ref{subsubsec:Attributes} (ii).  Then, we
-take the larger one of these two scores for the target specificity of
-$u$, because the larger one characterizes the target specificity more
+common followees mentioned in \ref{subsec:Followees}.  Then, we take the
+larger one of these two scores for the target specificity of $u$,
+because the larger one characterizes the target specificity more
 strongly than the other.  More formally, we compute
 $\mathit{TargetSpecificity}(u)$ by the formula below:
 
@@ -420,109 +387,3 @@ u\mbox{ is a }\mathit{non}\mbox{ }\mathit{target}\mbox{ }\mathit{user}, & \mbox{
 \vspace{-2ex}
 
 This is how we the target specificity of a Twitter user.
-
-\subsection{Classifying Users of High Target Specificity}
-\label{subsec:Classification Step2}
-
-In this subsection, in regards to Twitter users classified into ``the
-target specificity is high'' by the method mentioned in
-\ref{subsec:Classification Step1}, we explain the method of determining
-why their target specificities are high based on the result of our
-analysis mentioned in \ref{subsec:The Causes}.
-
-Here, we focus on the two causes of the high target specificity
-mentioned in \ref{subsec:The Causes} as follows:
-\begin{description}
- \item[(1)] because they publish information specified for certain
-            topics, and
- \item[(2)] because they publish information to the users specified
-            extensionally,
-\end{description}
-
-\noindent{and we determine whether a user we intend to classify
-correlates with each cause mentioned above.}
-
-We first determine various features of the user which potentially
-correlate with each cause.  Then, based on these features, we construct
-3-class classifiers which classify users into three categories: (1)
-their target specificity is high because they publish information
-specified for certain topics, (2) because they publish information to
-the users specified extensionally, and (3) in the cause of both (1) and
-(2).  By classifying users with the above classifiers, we determine why
-their target specificities are high.
-
-We adopted SVM and decision tree as a classifier.  Next, we explain what
-features of users we used for the classification.  All the feature
-values shown below were normalized to a value between $0$ and $1$.
-
-\begin{description}
-\bf {\item[(i)] numbers of followees and followers, and their ratio}
-\end{description}
-
-If the user publishes information to unspecified users, there is high
-probability that a number of his/her followers is quite large or a
-number of his/her followees is quite small.  So in such a case, a ratio
-of a number of his/her followees to a number of his/her followers is
-supposed to be very small.  Furthermore, if the user publishes
-information to the closed users, i.e., his/her friends, his/her club
-members, and so on, there is high probability that numbers of his/her
-followers and followees are very close because the user is supposed to
-have a reciprocal connection with them.  Thus, numbers of followees and
-followers, and their ratio are useful for determining why their target
-specificities are high.
-
-\begin{description}
-\bf {\item[(ii)] mutual follow ratio}
-\end{description}
-
-There is high probability that the user publishing information to the
-closed users has a large mutual follow ratio, i.e., a number of users
-with whom one follows one another is large, because the user is supposed
-to have a reciprocal connection with them.  Therefore, a mutual follow
-ratio is expected to be useful for determining why their target
-specificities are high.
-
-\begin{description}
-\bf {\item[(iii)] frequency of replies by ``@''}
-\end{description}
-
-There is high probability that the user publishing information to the
-closed users has a high frequency of replies by ``@'', i.e., the user
-replies to his/her followers frequently. In regard to a mutual follow
-ratio mentioned in (ii), there are some users publishing information to
-unspecified users in spite of a large mutual follow ratio, but in regard
-to a frequency of replies by ``@'', there is high probability that the
-user publish information to the closed users.  This is because a high
-frequency of replies by ``@'' demonstrates that the user is supposed to
-have a reciprocal connection with them.  Therefore, a frequency of
-replies by ``@'' is expected to be useful for determining why their
-target specificities are high.
-
-\begin{description}
-\bf {\item[(iv)] partialness of topics in messages}
-\end{description}
-
-In regard to a user publishing information specified for certain topics,
-topics in his/her messages are often partial.  Thus, we use the
-partialness of topics in his/her messages as a feature for the
-classification.
-
-Then, we explain how to compute a partialness of topics in messages of
-$u$.  We first collect up to 200 messages in order of newness.  Second,
-we determine the topic of each message by using Latent Dirichlet
-Allocation (LDA), which is a generative probabilistic model for
-collections of discrete data such as text corpora.  Then, we compute
-partialness of topics in messages $\mathit{partialness}(u)$ as follows:
-
-\vspace{-3ex}
-\[
- \mathit{partialness}(u) = - \sum_{t \in T_u} p_t \log p_t,\;\;\;\;\;
- p_t = \frac{|\{m|\;m \in M_u,\;\mathit{topic}(m) = t\}|}{|M_u|}
-\]
-\vspace{-3ex}
-
-\noindent{where $M_u$ is a message set of $u$, $T_u$ is the topic set we
-use for computing this feature, and $\mathit{topic}(m)$ is the topic of
-a message $m$.  The partialness of topics $partialness(u)$ is the
-entropy of $M_u$ on the topic.  This is how we compute a partialness of
-topics in messages.}

@@ -2,8 +2,9 @@
 \label{sec:Experiment}
 
 In this chapter, we conduct experiments to evaluate our methods proposed
-in \ref{sec:Approach}, and present the results obtained from them.  In
-addition, we discuss our methods based on the results.
+in \ref{sec:ClassificationMethod1} and \ref{sec:ClassificationMethod2},
+and present the results obtained from them.  In addition, we discuss our
+methods based on the results.
 
 \subsection{Data Set}
 \label{subsec:Data Set}
@@ -64,32 +65,32 @@ the data set: average and standard deviation of numbers of followers,
 
 \begin{table}[t]
 \caption{Average and standard deviation of numbers of followers,
- followees, and tweets in each category \label{ClassifierResults}}
+ followees, and tweets in each category \label{ClassifierResultslog}}
 \begin{center}
 \begin{tabular}{cIc|cccc}
 Removed Feature & \makebox[4em]{with all} & \makebox[3em]{i} &
  \makebox[3em]{ii} & \makebox[3em]{iii} & \makebox[3em]{iv} \\
  \bhline{1.5pt}
- 3-class SVM & 65.6 & 64.4 & 62.2 & 63.3 & {\bf 56.7}  \\ \hline
- 2 binary SVMs & 67.8 & 65.6 & 68.9 & {\bf 73.3} & {\bf 63.3}  \\ \hline
- 3-class decision tree & 54.4 & 54.4 & 46.7 & 48.9 & 50.0 \\ \hline
- 2 binary decision trees & 50.0 & 52.2 & 46.7 & 45.6 & 51.1  \\
+ 3-class SVM & 67.8 & 64.4 & {\bf 72.2} & 67.8 & 65.5  \\ \hline
+ 2 binary SVMs & 68.9 & 65.6 & 71.1 & 67.8 & 67.8  \\ \hline
+ 3-class decision tree & 55.6 & 54.4 & 46.7 & 47.8 & 50.0 \\ \hline
+ 2 binary decision trees & 53.3 & 52.2 & 44.4 & 47.8 & 47.8  \\
 \end{tabular}
 \end{center}
 \end{table}
 
 \begin{table}[t]
 \caption{Average and standard deviation of numbers of followers,
- followees, and tweets in each category \label{breakdown}}
+ followees, and tweets in each category \label{ClassificationDetailslog}}
 \begin{center}
 \begin{tabular}{c|cIc|cccc}
 \multicolumn{2}{cI}{Removed Feature} & \makebox[4em]{with all} &
  \makebox[3em]{i} & \makebox[3em]{ii} &  \makebox[3em]{iii} &
  \makebox[3em]{iv} \\ \bhline{1.5pt}
- \multirow{2}{*}{SVM} & \makebox[4em]{topic} & 82.2 & 81.1 & 84.4 & {\bf
-                     86.7} & 81.1  \\
- & user & 85.6 & 84.4 & 84.4 & {\bf 86.7} & 82.2 \\ \hline
- \multirow{2}{*}{decision tree} & topic & 68.9 & 68.9 & 68.9 & 70.0 & 74.4 \\
+ \multirow{2}{*}{SVM} & \makebox[4em]{topic} & 85.6 & 81.1 & {\bf 86.7}
+                 & 84.4 & 84.4  \\
+ & user & 83.3 & 84.4 & 84.4 & 83.3 & 82.2 \\ \hline
+ \multirow{2}{*}{decision tree} & topic & 72.2 & 68.9 & 65.6 & 72.2 & 74.4 \\
  & user & 75.6 & 76.7 & 74.4 & 71.1 & 70.0 \\
 \end{tabular}
 \end{center}
@@ -105,7 +106,7 @@ methods.
 
 First, we conducted the experiments evaluating the method of classifying
 Twitter users based on the target specificity of their information
-publishing.  We used 90 users classified into the category (i) as target
+publishing mentioned in \ref{}.  We used 90 users classified into the category (i) as target
 users, and 90 users classified into the category (ii), (iii), and (iv)
 as non target users.  We first computed
 $\mathit{SpecificityScore}_{{\mathit{term}}}(u)$ and

@@ -103,7 +103,18 @@ extensionally. And we construct a three-class classifier which determine
 whether users only belong to category (1), only belong to category (2),
 or belong to both category (1) and (2).  We then determine reasons that
 the target specificity is high based on various features which
-characterize each category for the classifier.
+characterize each category for the classifier.  Figure~\ref{fig:Flow}
+shows the overall flow of our methods.
+
+{\footnotesize
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=14cm]{images/flow.eps}
+ \caption{Overall flow of our methods}
+\label{fig:Flow}
+\end{center}
+\end{figure}
+}
 
 On the Web, it is hard to know what kinds of users each Web page targets
 to.  But in Twitter, we can know what kinds of users each user targets
@@ -141,17 +152,18 @@ The contribution of this paper is summarized as follows.
       specificity is high.
 \end{itemize}
 
-The rest of this paper is organized as follows. Next section explains
+The rest of this paper is organized as follows.  Next section explains
 some related work and makes the position of this study clear.  Then we
 define Twitter user's target specificity of information publishing and
 formulate our problem, and we discuss why target scope of some messages
 in Twitter are confined to certain users in \ref{sec:Target
-Specificity}. In \ref{sec:Approach}, we explain the method of
-classifying Twitter users based on how high the target specificity of
+Specificity}.  In \ref{sec:ClassificationMethod1}, we explain the method
+of classifying Twitter users based on how high the target specificity of
 their information publishing.  In addition, in regards to Twitter users
 classified into  ``the target specificity is high'' by the above method,
 we explain the method of determining why their target specificities are
-high.  Then in \ref{sec:Experiment}, we presents the results obtained
-from experiments we conducted to evaluate the precision of our methods.
-\ref{sec:Conclusion} concludes the paper.
+high in \ref{sec:ClassificationMethod2}.  Then in \ref{sec:Experiment},
+we presents the results obtained from experiments we conducted to
+evaluate the precision of our methods.  \ref{sec:Conclusion} concludes
+the paper.
 
