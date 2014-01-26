@@ -1,4 +1,4 @@
-\section{Experiments and Discussions}
+\section{Experiments and Discussion}
 \label{sec:Experiment}
 
 In this chapter, we conduct experiments to evaluate our methods proposed
@@ -40,15 +40,15 @@ coincide with, and as a result, we were able to collect 93, 320, 375,
 and 30 users in the category (i), (ii), (iii), and (iv).  We randomly
 selected 90 users from the category (i), and 30 users from (ii), (iii),
 and (iv) respectively.  We collected these 180 users in total, and we
-used them as the data set.  Table~\ref{breakdown} shows the breakdown of
-the data set: average and standard deviation of numbers of followers,
- followees, and tweets in each category.
+used them as the data set.  Table~\ref{table:breakdown} shows the
+breakdown of the data set: average and standard deviation of numbers of
+followers,  followees, and tweets in each category.
 
 \newcolumntype{I}{!{\vrule width 1.5pt}}
 \newcommand{\bhline}[1]{\noalign{\hrule height #1}}
 \begin{table}[t]
 \caption{Average and standard deviation of numbers of followers,
- followees, and tweets in each category \label{breakdown}}
+ followees, and tweets in each category \label{table:breakdown}}
 \begin{center}
 \begin{tabular}{c|cIc|c|c|c}
 \multicolumn{2}{cI}{} & \makebox[4em]{i} & \makebox[4em]{ii} &
@@ -63,39 +63,6 @@ the data set: average and standard deviation of numbers of followers,
 \end{center}
 \end{table}
 
-\begin{table}[t]
-\caption{Average and standard deviation of numbers of followers,
- followees, and tweets in each category \label{ClassifierResultslog}}
-\begin{center}
-\begin{tabular}{cIc|cccc}
-Removed Feature & \makebox[4em]{with all} & \makebox[3em]{i} &
- \makebox[3em]{ii} & \makebox[3em]{iii} & \makebox[3em]{iv} \\
- \bhline{1.5pt}
- 3-class SVM & 67.8 & 64.4 & {\bf 72.2} & 67.8 & 65.5  \\ \hline
- 2 binary SVMs & 68.9 & 65.6 & 71.1 & 67.8 & 67.8  \\ \hline
- 3-class decision tree & 55.6 & 54.4 & 46.7 & 47.8 & 50.0 \\ \hline
- 2 binary decision trees & 53.3 & 52.2 & 44.4 & 47.8 & 47.8  \\
-\end{tabular}
-\end{center}
-\end{table}
-
-\begin{table}[t]
-\caption{Average and standard deviation of numbers of followers,
- followees, and tweets in each category \label{ClassificationDetailslog}}
-\begin{center}
-\begin{tabular}{c|cIc|cccc}
-\multicolumn{2}{cI}{Removed Feature} & \makebox[4em]{with all} &
- \makebox[3em]{i} & \makebox[3em]{ii} &  \makebox[3em]{iii} &
- \makebox[3em]{iv} \\ \bhline{1.5pt}
- \multirow{2}{*}{SVM} & \makebox[4em]{topic} & 85.6 & 81.1 & {\bf 86.7}
-                 & 84.4 & 84.4  \\
- & user & 83.3 & 84.4 & 84.4 & 83.3 & 82.2 \\ \hline
- \multirow{2}{*}{decision tree} & topic & 72.2 & 68.9 & 65.6 & 72.2 & 74.4 \\
- & user & 75.6 & 76.7 & 74.4 & 71.1 & 70.0 \\
-\end{tabular}
-\end{center}
-\end{table}
-
 Then, for each user, we collected at most 1,000 followers of the user,
 and in regard to the followers who follow at most 1,000 users, we also
 collected their followees.  We used them in order to evaluate our
@@ -106,31 +73,34 @@ methods.
 
 First, we conducted the experiments evaluating the method of classifying
 Twitter users based on the target specificity of their information
-publishing mentioned in \ref{}.  We used 90 users classified into the category (i) as target
-users, and 90 users classified into the category (ii), (iii), and (iv)
-as non target users.  We first computed
-$\mathit{SpecificityScore}_{{\mathit{term}}}(u)$ and
+publishing mentioned in \ref{sec:ClassificationMethod1}.  We used 90
+users classified into the category (i) as target users, and 90 users
+classified into the category (ii), (iii), and (iv) as non target users.
+We first computed $\mathit{SpecificityScore}_{{\mathit{term}}}(u)$ and
 $\mathit{SpecificityScore}_{{\mathit{followee}}}(u)$ for each user $u$,
 and computed $\mathit{TargetSpecificity}(u)$ based on the above scores.
 Then, we determined a threshold $\delta$ which can classifies target
 users and non target users accurately the most, and evaluated the
 classification results with $\delta$.  When computing
 $\mathit{TargetSpecificity}(u)$, we used two models: the probabilistic
-model and the subtracting model mentioned in \ref{subsubsec:Scoring},
-and compared them.
+model and the subtracting model mentioned in \ref{subsec:Scoring}, and
+compared them.
 
 Second, we conducted the experiments evaluating the method of determing
 why the target specificity of the user is high in regard to the target
-user.  We extracted users from the category (ii), (iii), and (iv) by 30
-users, and used 90 users in total.  We first extracted features
-mentioned in \ref{subsec:Classification Step2} from the user.  Then,
-based on these features, we constructed 3-class classifiers which
-classify users into three categories: (ii), (iii), and (iv), and
-evaluated the classification results using 10-fold cross validation.  We
-used two learning algorithms: SVM and the decision tree as classifiers,
-and compared them.  For SVM, we used
+user mentioned in \ref{sec:ClassificationMethod2}.  We extracted users
+from the category (ii), (iii), and (iv) by 30 users, and used 90 users
+in total.  We first extracted features mentioned in
+\ref{sec:ClassificationMethod2} from the user, which are normalized to a
+value between $0$ and $1$.  Then, based on these features, we
+constructed two types of classifiers: a single 3-class classifier and
+two binary classifiers, which classify users into three categories:
+(ii), (iii), and (iv), and evaluated the classification results using
+3-fold cross validation.  We used two learning algorithms: SVM and the
+decision tree as classifiers, and compared them.  For SVM, we used
 LIBSVM\footnote{\url{http://www.csie.ntu.edu.tw/~cjlin/libsvm/}}, which
-is a popular SVM library, with the Gaussian kernel.  For the decision
+is a popular SVM library, with the Gaussian kernel, which using
+one-against-one method for multiclass classification.  For the decision
 tree, we used scikit-learn
 \footnote{\url{http://scikit-learn.org/stable/modules/tree.html}}.
 
@@ -139,108 +109,117 @@ in order to get a number of users who have a certain term in their
 profiles.  We also used
 MeCab\footnote{\url{http://mecab.sourceforge.net/}} for morphological
 analysis of Japanese sentences in profiles, local information, and
-tweets of $u$.  Furthermore, we used
+tweets of users.  Furthermore, we used
 gensim\footnote{\url{http://radimrehurek.com/gensim/}} for using Latent
 Dirichlet Allocation (LDA).
 
-実験結果を図\ref{demography}，図\ref{follow}，図\ref{pr}に示す．
-図\ref{demography}は，プロフィール・位置情報を用いて対象限定性を表した手法，図
-\ref{follow}は，フォローの傾向を用いて対象限定性を表した手法を表しており，
-それぞれスコアの高いものからソートしている．図\ref{pr}は，上記の二つの手
-法で求めたスコアをそれぞれ降順にソートし，ターゲット型ユーザを正解
-とした場合の，適合率・再現率曲線を表している．また，適合率・再現率曲線の
-ベースラインとして，20件のユーザそれぞれのフォロワー数を昇
-順にソートし，同じくターゲット型ユーザを正解としたものを用いている．
+\subsection{Results and Evaluation}
+\label{subsec:Results}
 
-フォロワー内でのプロフィール・位置情報を用いた手法に関しては，図
-\ref{demography}に示すように，ターゲット型ユーザの方が，非ターゲット
-型ユーザよりも，対象限定性を表すスコアが高くなっており，これらを明確に分
-類することができているといえる．また，図\ref{pr}に示すように，適合
-率・再現率曲線も，ベースラインを上回っている．これらの結果より，プロフィー
-ル・位置情報を用いて対象限定性を表す手法は，ターゲット型ユーザと非ターゲッ
-ト型ユーザを分類するのに有効であるといえる．
+In this subchapter, we explain the results of our experiments and
+evaluate our methods.
 
-フォロワー内でのフォローの傾向を用いた手法に関しても，図\ref{follow}に示
-すように，ターゲット型ユーザの方が非ターゲット型ユーザよりも，対象限定性
-を表すスコアが平均的に高くなった．しかし，これら二つの間の差は大きくなく，
-適合率・再現率曲線に関しては，図\ref{pr}に示すように，ベースライン
-を下回る結果となった．これらの原因としては，以下のようなものが考えられる．
-\vspace{1ex}
+\subsubsection{Classifying Users Based on Target Specificity}
+\label{subsubsec:Result of Method1}
 
+\subsubsection{Classifying Users of High Target Specificity}
+\label{subsubsec:Result of Method2}
 
-{\bf(1)} 本実験では，フォロワーのフォローの傾向を用いた手法の中で，Twitter
-       の日本人ユーザ全体でのフォローの頻度$\mathit{uf}$を求めているが，
-       実際には，Twitterに登録しているものの，ほとんど利用していないユー
-       ザも多く存在する．そのようなユーザの影響で，$\mathit{uf}$が必要以
-       上に小さくなってしまっており，最終的なスコアに十分反映されていな
-       いと考えられる．今後は，Twitterユーザ全体ではなく，Twitterのアクティブユーザ
-       のみの中からフォローの頻度を求めることで，本問題の改善を図る予定
-       である．\vspace{1ex}
+We show the results of the experiments classifiying target users.
+Table~\ref{table:Precision} shows the precision of four types of
+classification methods: a combination of two approaches and two
+classifiers, i.e., a 3-class SVM, 2 binary SVMs, a 3-class decision
+tree, and 2 binary decision trees, with all features mentioned in
+\ref{sec:ClassificationMethod2} into three categories.  The precision
+of classification methods using SVMs as classifiers are more than 10
+points higher than that using decision trees.  When using SVMs as
+classifiers, the precision of 2 binary classifiers are a little higher
+than that of a 3-class classifier, and it is the opposite when using
+decision trees.  But for both methods using SVMs and decision trees, the
+deference between the precision of 2 binary classifiers and that of a
+3-class classifier is not so big, which suggests that the two causes of
+the high target specificity mentioned in \ref{subsec:The Causes} are
+highly independent of each other.
 
-{\bf(2)} フォロワー内に強く一貫した傾向がなくても，フォローに共通の傾
-       向が見られる場合があると考えられる．本実験において，社会のニュー
-       スを発信するユーザのフォロワーの多くが，社会のニュースを発信する
-       別のユーザを同時にフォローしているというケースが見られたが，実際
-       には，フォロワー内に社会のニュースに興味があるという弱い一貫性は
-       あるものの，強く一貫した傾向は見られなかった．\vspace{1ex}
+Next, we show the details of the results of classification methods using
+SVMs as classifiers.  The second column of Table~\ref{table:Classifier
+Details} shows the precision of each classification method with all
+features, and the following columns show the precision when we remove
+each feature from the data.  Each feature of i, ii, iii, and iv
+correspond to those in \ref{sec:ClassificationMethod2} respectively.
+For each method, a bold number shows when the precision becomes the
+lowest.
 
-\subsection{実験結果の詳細と分析}
-\label{sec:detail}
+The socond and third rows show the precision of a 3-class SVM
+and 2 binary SVMs respectively.  For each method, the precision became
+the lowest when we removed the feature (i): numbers of followees and
+followers, and their ratio.  It is able to be said that numbers of
+followees and followers, and their ratio are mainly useful for
+determining the cause of high target specificity.  The precision also
+became lower to some extent when we removed the feature (iv):
+partialness of topics in messages.  This suggests that partialness of
+topics in messages is related to high target specificity.
+Table~\ref{table:topics} shows a part of topics out of 20 extracted by
+LDA.  We were able to extract topics about news programs, disasters, and
+so on.  On the other hand, the precision became higher when we　removed
+the feature (ii): mutual follow ratio.  This suggests that　mutual
+follow ratio and whether the user publishes information to the closed
+users are not necessarily correlating.
 
-本節では，実験結果から，正解データとして用いたユーザの分析を行った結果を
-示す．表\ref{detail}に，正解データ内のターゲット型ユーザ・非ターゲット型
-ユーザのうち，各2ユーザの詳細を表している．各ユーザそれぞれに関して，
-\ref{sec:Determine Specificity}節で定義した$\mathit{tf}$が高い3語と，
-$\mathit{ff}$が高い3ユーザを示し，実験結果におけるそれらのスコアを示して
-いる．
+The fourth and fifth rows show the precision of each binary SVM used for
+the method of 2 binary SVMs: a SVM determining whether users publish
+information specified for certain topics, and that determining users
+publish information to the users specified extensionally, respectively.
+The precision of the former became the lowest when we removed the
+feature (i): numbers of followees and followers, and their ratio, and
+that of the latter became the lowest when we removed the feature
+(iv): partialness of topics in messages, which is the noticeable
+metter.  This suggests that partialness of topics is more useful for
+determing whether users publish information to the users specified
+extensionally or not than whether users publish information specified
+for certain topics or not.
 
-ターゲット型ユーザである@minnanomachi(写真に関するプロジェクトのア
-カウント)に関しては，「写真」や「カメラ」といった語のスコアや，カメラ関連
-のアカウントのスコアが高くなっており，そのアカウントを特徴付けるような結
-果が得られているといえる．同様にターゲット型ユーザである@USJ\_BGM(USJに
-関するアカウント)に関しても，「USJ」といった語のスコアや，USJ関連のアカ
-ウントのスコアが高くなっている．また，「好き」といった一般に出現頻度の高
-い語や，@masason(孫正義)といった広く一般に知られているユーザは，
-$\mathit{tf}$や$\mathit{ff}$が高くなっているが，$\mathit{df}$や
-$\mathit{uf}$によりそれらのスコアは下がっており，最終的なスコアは非常に小
-さくなっていることが分かる．
+\begin{table}[t]
+\caption{Precision of the classification of target users
+ \label{table:Precision}}
+ \begin{center}
+\begin{tabular}{cIc|c}
+ & \makebox[6em]{SVM} & \makebox[6em]{decision tree} \\ \bhline{1.5pt}
+ \makebox[10em]{3-class classifier} & 67.8 & 55.6 \\ \hline
+ 2 binary classifiers & {\bf 68.9} & 53.3 \\
+\end{tabular}
+ \end{center}
+\end{table}
 
-非ターゲット型ユーザに関しては，「大好き」や「フォロー」といった，一般に
-出現頻度の高い語や，@pamyurin(きゃりーぱみゅぱみゅ)や@TDR\_PR(東京
-ディズニーリゾートに関するアカウント)といった，広く一般に知られているユー
-ザが抽出されているが，$\mathit{df}$や$\mathit{uf}$によりこれらのスコアは
-下がっている．特に，プロフィール・位置情報を用いた手法のスコアは全て0となって
-いる．
+\hdashlinewidth=0.5mm
+\begin{table}[t]
+\caption{Precision of SVMs without each feature \label{table:Classifier
+ Details}}
+\begin{center}
+\begin{tabular}{ccIc|cccc}
+ \multicolumn{2}{cI}{Removed Feature} & \makebox[4em]{with all} &
+ \makebox[3em]{i} & \makebox[3em]{ii} & \makebox[3em]{iii} &
+ \makebox[3em]{iv} \\ \bhline{1.5pt}
+ \multicolumn{2}{cI}{3-class SVM} & 67.8 & {\bf 64.4} & 72.2 & 67.8 &
+ 65.5 \\ \hline
+ \multicolumn{2}{cI}{2 binary SVMs} & 68.9 & {\bf 65.6} & 71.1 & 67.8 &
+ 67.8 \\ \hdashline
+ \makebox[4em]{} & \makebox[3em]{topic} & 85.6 & {\bf 81.1} & 86.7 & 84.4 & 84.4 \\
+ \makebox[4em]{} & \makebox[3em]{user} & 83.3 & 84.4 & 84.4 & 83.3 & {\bf 82.2} \\
+\end{tabular}
+\end{center}
+\end{table}
 
-このように，これらの例に関しては，フォロワー集合の中で特徴のある語やフォ
-ローの傾向を抽出することができており，提案手法が有効であるといえる．ただ
-し，現在の手法では，「写真」と「カメラ」というような同じトピックに関する
-語を，完全に独立なものとして扱っている．このような語を関連付けて考え，対
-象限定性を求める有効性を向上させることが今後の課題である．
-
-\subsection{アプリケーションの実装}
-\label{sec:Application}
-
-本節では，本研究の提案手法を応用した，実装予定のアプリケーションについて
-述べる．
-
-本アプリケーションは，提案手法に基づき，Twitterの検索結果を3つのタブに分
-類することで，ユーザのTwitter検索を支援するものである．以下に，表示する3
-つのタブついてそれぞれ示している．\vspace{1ex}
-
-{\bf (1)} 対象範囲が広いユーザの記事を表示する．ある内容に関する一般的な
-ニュースのように，広く一般のユーザが興味を示すような記事を得ることができ
-る．\vspace{1ex}
-
-{\bf (2)} あるトピックに特化された情報を発信するユーザの記事を表示する．ある
-イベントなどに関する具体的な情報や，あるトピックに関する専門的な情報を得るこ
-とができる．\vspace{1ex}
-
-{\bf (3)} クローズドなユーザ集合に情報を発信するユーザの記事を表示する．
-ある内容に関する一般ユーザの反応などといった，個人のつぶやきなどを得る
-ことができる．\vspace{1ex}
-
-このように分類することで，自分の求めている情報を効率よく取得することがで
-きると考えている．また，\ref{sec:Elements}節で，あるトピックに特化されており，
-かつクローズドなユーザ集合に情報を発信するユーザが存在する旨を述べたが，
-そのような記事は，上記の(2)と(3)の両方のタブに表示する予定である．
+\begin{table}[t]
+\caption{A part of topics extracted by LDA
+ \label{table:topics}}
+\begin{center}
+\begin{tabular}{c|c}
+topic id & \makebox[25em]{words} \\ \bhline{1.5pt}
+1 & news, program, broadcast, morning, night, tonight \\
+2 & update, blog, picture, smart phone, weather\\
+3 & worst, typhoon, Sea of Japan, electricity \\
+4 & earthquake, observation, focus, concern, teacher \\
+\end{tabular}
+\end{center}
+\end{table}
