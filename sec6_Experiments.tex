@@ -113,21 +113,219 @@ tweets of users.  Furthermore, we used
 gensim\footnote{\url{http://radimrehurek.com/gensim/}} for using Latent
 Dirichlet Allocation (LDA).
 
-\subsection{Results and Evaluation}
-\label{subsec:Results}
+\subsection{Results and Evaluation of Classifying Users Based on Target
+  Specificity}
+\label{subsec:Results of Method1}
 
-In this subchapter, we explain the results of our experiments and
-evaluate our methods.
+In this subchapter, we show the results of the experiments classifiying
+users based on target specificity of their information publishing.
 
-\subsubsection{Classifying Users Based on Target Specificity}
-\label{subsubsec:Result of Method1}
+\begin{table}[t]
+\caption{Precision of the classification of target users and non target
+ users using a couple of attributes measuring consistency separately
+ \label{table:Classify Target Users}}
+\begin{center}
+\begin{tabular}{cIccc|c}
+ & \multicolumn{3}{c|}{Probablistic Model} &
+ Subtracting Model \\
+ & $\gamma = 0.01$ & $\gamma = 0.03$ & $\gamma = 0.05$ & \\
+ \bhline{1.5pt}
+ common terms & {\bf 0.861} & 0.850 & 0,839 & 0.850 \\ \hline
+ common followees & 0.828 & 0.828 & 0.817 & {\bf 0.833} \\
+\end{tabular}
+\end{center}
+\end{table}
 
-\subsubsection{Classifying Users of High Target Specificity}
-\label{subsubsec:Result of Method2}
+We first show the precision of the classification of target users and
+non target users using a couple of attributes measuring consistency,
+i.e., common term and common followers, separately.  We also used a
+couple of models mentioned in \ref{subsec:Scoring}, i.e., the
+probablistic model and the subtracting model, which compute
+$\mathit{SubsetScore}(S_{F_uc})$.  In regard to the probablistic model,
+we take $0.01$, $0.03$, $0.05$ for $\gamma$, the threshold which cuts
+down the case that a local rate is very small, and
+compared them.  The second and third rows of Table~\ref{table:Classify
+Target Users} show the precision of the classification using common
+terms and common followees as attributes, respectively.  For each
+attribute, a bold number shows when the precision becomes the highest.
 
-We show the results of the experiments classifiying target users.
-Table~\ref{table:Precision} shows the precision of four types of
-classification methods: a combination of two approaches and two
+In each case of using common terms and common followees as attributes,
+we achieved the highest precision when we used the probablistic model
+with $\gamma = 0.01$ and the subtracting model respectively.  In regard
+to the probablistic model, we can see that the smaller $\gamma$ is,
+thecharacterize target users though the covering rate of $S_{F_uc}$ to
+$F_u$ is not high, and can contribute the classification of target users
+and non target users.  But for both attributes, the difference between
+the precision of the probablistic model and that of the subtracting
+model is not so big.  So it is considered that these two models are
+about the same effect.
+
+In addition, the precision using common terms as attributes is higher
+than that using common followees regardless of models.  This suggests
+that common terms in profiles and location information are useful for
+extracting consistency subsets than common followees.  This is supposed
+to be because not only target users but also non target users sometimes
+have common followees in their followers, in contrast with common terms.
+For example, a user publishing information about world news, one of non
+target users, sometimes have common followees publishing world news in
+his/her followers.  But the global rate of such followers is usually
+large, so there is no necessity for us to notice about them in most
+cases.
+
+Now for each attribute, we use the highest precision of these models,
+i.e., that of the probablistic model with $\gamma=0.01$ for common terms
+and the subtracting model for common
+followees. Figure~\ref{fig:histogram} shows the histogram of specificity
+scores of each attribute on target users and non target users.  In the
+case of using common terms as attiributes, specificity scores of most
+non target users are very small, with the average 0.004.  On the othe
+hand, those of most target users are large, and even the average, 0.065,
+is as same as the maximum score for non target users, i.e., 0.067.  A
+similar trend is apparent in the case of using common followees as
+attributes: even the median for target users, i.e., 0.050, is larger
+than the maximam score for non target users, i.e., 0.043.
+
+Figure~\ref{fig:cumulativehistogram} shows the cumulative histogram of
+specificity scores of each attribute on target users and non target
+users.  More and more target users cumulate as scores become smaller,
+and more and more non target users cumulate as scores become larger.
+Therefore, the score on which the sum of numbers of target users and non
+target users is the largest is the score which can classifies target
+users and non taraget users accurately the most, and we set this score
+to the threshold $\delta$.  In each case of using common terms and
+common followees as attributes, we take $\delta$ for 0.009 and 0.012
+respectively.
+
+Next, we show the relationship between two attributes, i.e., common
+terms and common followees.  Figure~\ref{fig:distribution} shows a
+scatter diagram based on specificity scores of these two attributes on
+target users and non target users.  On target users, points of scores of
+these attributes are widely distributed and have weak positive
+correlation, with the correlation coefficient 0.507.  That is, there is
+high possibility that the higher one score is, the higher the other
+score is.  Of course, as shown in Figure~\ref{fig:distribution}, there
+are some outliers, i.e., one score is high and the other score is low.
+On the othe hand, points of scores of these attributes concentrate on
+the point $(0, 0)$ on no target users, and have no correlation, with the
+correlation coefficient 0.232.
+
+Then, we show the precision of the final classification of target users
+and non target users.  The second and third columns of
+Table~\ref{table:Final Precision} shows the precision of baselines:
+followers in descending order and a simple SVM respectively.  When we
+used
+
+
+
+
+
+{\footnotesize
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=14cm]{images/histogram.eps}
+ \caption{The histogram of specificity scores of each attribute on
+ target users and non target users}
+\label{fig:histogram}
+\end{center}
+\end{figure}
+}
+
+{\footnotesize
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=14cm]{images/cumulativehistogram.eps}
+ \caption{The cumulative histogram of specificity scores of each
+ attribute on target users and non target users}
+\label{fig:cumulativehistogram}
+\end{center}
+\end{figure}
+}
+
+{\footnotesize
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=14cm]{images/distribution.eps}
+ \caption{A scatter diagram based on specificity scores of a couple of
+ attributes, common terms and common followees, on target users and non
+ target users}
+\label{fig:distribution}
+\end{center}
+\end{figure}
+}
+
+\begin{table}[t]
+\caption{Precision of the final classification of target users and non
+ target users \label{table:Final Precision}}
+\begin{center}
+\begin{tabular}{cIcc|cccc}
+ & \multicolumn{2}{c|}{Baseline} & \multicolumn{4}{c}{Proposed Method} \\
+ \makebox[5em]{Method} & \makebox[4em]{follower} & \makebox[3em]{SVM} &
+ \makebox[3em]{max} & \makebox[3em]{avg} & \makebox[4em]{SVM} &
+ \makebox[4em]{decision tree} \\ \bhline{1.5pt}
+ Precision & 0.878 & 0.828 & 0.856 & 0.872 & {\bf 0.944} & 0.906 \\
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[t]
+\caption{Details of the results of a part of users
+ \label{table:Details}}
+\begin{center}
+\scalebox{0.75}{
+\begin{tabular}{ccccccc}
+ user  & term \& followee & $\mathit{local rate}$ &
+ $\mathit{global rate}$ & $\mathit{SubsetScore}$ &
+ $\mathit{SpecificityScore}$ \\ \bhline{1.5pt}
+ target user & & & & & \\ \hline
+ @MCstaff\_Fukuoka & Fukuoka & 0.563 & 0.047 & 0.390 & \\
+ & music & 0.114 & 0.096 & 0.076 & 0.235 \\
+ & Hakata & 0.095 & 0.003 & 0.076 & \\ \cline{2-7}
+ & @fukuoka\_yokane & 0.069 & 0.023 & 0.046 &\\
+ & @f\_sunpalace & 0.063 & 0.023 & 0.040 & 0.010 \\
+ & @mbc\_o2\_eiji & 0.059 & 0.028 & 0.031 & \\ \hline
+ @Jars0830 & Arashi & 0.439 & 0.039 & 0.304 & \\
+ & participation & 0.190 & 0.026 & 0.131 & 0.233 \\
+ & line & 0.130 & 0.045 & 0.090 & \\ \cline{2-7}
+ & @Yamnos5 & 0.249 & 0.004 & 0.246  & \\
+ & @ars\_762 & 0.109 & 0.072 & 0.037 & 0.067 \\
+ & @nino\_xoxo\_ & 0.070 & 0.033 & 0.037 & \\ \hline
+ @pa\_ko065 & piano & 0.528 & 0.009 & 0.366 & \\
+ & music & 0.250 & 0.096 & 0.173 & 0.223 \\
+ & Sapporo & 0.139 & 0.022 & 0.096 & \\ \cline{2-7}
+ & @mofu\_co & 0.500 & 0.001 & 0.499  & \\
+ & @miko3535 & 0.500 & 0.003 & 0.497 & 0.277 \\
+ & @shimagaraneko & 0.472 & 0.002 & 0.470 & \\ \bhline{1.5pt}
+ non target user & & & & & \\ \hline
+ @masason & fan & 0.059 & 0.676 & 2.62e-17 \\
+ & Tokyo & 0.027 & 0.196 & 0 & 1.20e-12 \\
+ & music & 0.024 & 0.096 & 1.34e-15 & \\ \cline{2-7}
+ & @shigeruishiba & 0.050 & 0.939 & 0 & \\
+ & @WSJJapan & 0.066 & 3.56 & 0 & 0 \\
+ & @HeizoTakenaka & 0.05 & 3.62 & 0 & \\ \hline
+ @Kantei\_Saigai & Tokyo & 0.034 & 0.196 & 0 & \\
+ & hobby & 0.027 & 0.095 & 1.14e-15 & 3.52e-9 \\
+ & movie & 0.019 & 0.043 & 1.85e-7 & \\ \cline{2-7}
+ & @MofaJapan\_ITPR & 0.056 & 0.597 & 0 & \\
+ & @CAO\_BOUSAI & 0.203 & 0.834 & 0 & 0.001 \\
+ & @MofaJapan\_jp & 0.062 & 0.950 & 0 & \\ \hline
+ @tenkijp & Tokyo & 0.033 & 0.196 & 0 & \\
+ & hobby & 0.022 & 0.095 & 9.28e-16 & 2.51e-5 \\
+ & music & 0.021 & 0.096 & 1.18e-15 & \\ \cline{2-7}
+ & @tenkijp\_jishin & 0.421 & 10.4 & 0  & \\
+ & @Kantei\_Saigai & 0.358 & 14.8 & 0 & 0 \\
+ & @bouei\_saigai & 0.277 & 6.31 & 0 & \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{table}
+
+\subsection{Results and Evaluation of Classifying Users of High Target
+  Specificity}
+\label{subsec:Results of Method2}
+
+In this subchapter, we show the results of the experiments classifiying
+target users.  Table~\ref{table:Precision} shows the precision of four
+types of classification methods: a combination of two approaches and two
 classifiers, i.e., a 3-class SVM, 2 binary SVMs, a 3-class decision
 tree, and 2 binary decision trees, with all features mentioned in
 \ref{sec:ClassificationMethod2} into three categories.  The precision
@@ -136,7 +334,7 @@ points higher than that using decision trees.  When using SVMs as
 classifiers, the precision of 2 binary classifiers are a little higher
 than that of a 3-class classifier, and it is the opposite when using
 decision trees.  But for both methods using SVMs and decision trees, the
-deference between the precision of 2 binary classifiers and that of a
+difference between the precision of 2 binary classifiers and that of a
 3-class classifier is not so big, which suggests that the two causes of
 the high target specificity mentioned in \ref{subsec:The Causes} are
 highly independent of each other.
@@ -161,8 +359,8 @@ partialness of topics in messages.  This suggests that partialness of
 topics in messages is related to high target specificity.
 Table~\ref{table:topics} shows a part of topics out of 20 extracted by
 LDA.  We were able to extract topics about news programs, disasters, and
-so on.  On the other hand, the precision became higher when we　removed
-the feature (ii): mutual follow ratio.  This suggests that　mutual
+so on.  On the other hand, the precision became higher when we removed
+the feature (ii): mutual follow ratio.  This suggests that mutual
 follow ratio and whether the user publishes information to the closed
 users are not necessarily correlating.
 

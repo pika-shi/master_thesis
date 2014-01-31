@@ -7,6 +7,9 @@ chapter, we explain the method of determining why their target
 specificities are high based on the result of our analysis mentioned in
 \ref{subsec:The Causes}.
 
+\subsection{Architecture of the Classifiers}
+\label{subsec:Architecture}
+
 Here, we focus on the two causes of the high target specificity
 mentioned in \ref{subsec:The Causes} as follows:
 \begin{description}
@@ -21,26 +24,57 @@ correlates with each cause mentioned above.}
 
 We first determine various features of the user which potentially
 correlate with each cause.  Then, based on these features, we construct
-3-class classifiers which classify users into three categories: (1)
-their target specificity is high because they publish information
+the classification method which classifies users into three categories:
+(1) their target specificity is high because they publish information
 specified for certain topics, (2) because they publish information to
 the users specified extensionally, and (3) in the cause of both (1) and
 (2).  By classifying users with the above classifiers, we determine why
 their target specificities are high.
 
+We adopted SVM and decision tree as a classifier.  Next, we propose a
+couple of approaches to classify users into three categories.
+
+\subsubsection{3-class Classifiers}
+\label{subsubsec:3-class}
+
+In the first approach, we construct a single 3-class classifier using
+one-against-one method.  Each result class corresponds to each category:
+(1), (2), and (3).  Figure~\ref{fig:classifier} (a) shows architecture
+of a 3-class classifier.
+
+\subsubsection{2 Binary Classifiers}
+\label{subsubsec:2-binary}
+
+In the second approach, we construct two binary classifiers, each of
+which determines (i) whether users publish information specified for
+certain topics, amd (ii) whether users publish information to the users
+specified extensionally, respectively.  When the results of two
+classifiers are \emph{yes} and \emph{no} respectively, we classify them
+into the category (1): their target specificity is high because they
+publish information specified for certain topics.  When \emph{no} and
+\emph{yes}, we classify them into the category (2): because they publish
+information to the users specified extensionally, and when \emph{yes}
+and \emph{yes}, we classify them into the category (3): in the cause of
+both (1) and (2).  Figure~\ref{fig:classifier} (b) shows architecture of
+2 binary classifiers.
+
 {\footnotesize
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=14cm]{images/classifier.eps}
- \caption{An example of a user's timeline in Twitter}
+ \caption{Architecture of a couple of classifiers: (a) 3-class
+ classifier and (b) 2 binary classifiers}
 \label{fig:classifier}
 \end{center}
 \end{figure}
 }
 
-We adopted SVM and decision tree as a classifier.  Next, we explain what
-features of users we used for the classification.  All the feature
-values shown below were normalized to a value between $0$ and $1$.
+\subsection{Features Used for the Classification}
+\label{subsec:Features}
+
+In this subchapter, we explain what features of users we used for the
+classification.  All the feature values shown below were normalized to
+values between $0$ and $1$.
 
 \begin{description}
 \bf {\item[(i)] numbers of followees and followers, and their ratio}
@@ -55,8 +89,12 @@ information to the closed users, i.e., his/her friends, his/her club
 members, and so on, there is high probability that numbers of his/her
 followers and followees are very close because the user is supposed to
 have a reciprocal connection with them.  Thus, numbers of followees and
-followers, and their ratio are useful for determining why their target
-specificities are high.
+followers, and their ratio are expected to be useful for determining why
+their target specificities are high.
+
+We take a logarithm of numbers of followers and followees because the
+difference of large numbers of followers and followees are not as
+important as the difference of small numbers of followers and followees.
 
 \begin{description}
 \bf {\item[(ii)] mutual follow ratio}
@@ -96,10 +134,13 @@ classification.
 
 Then, we explain how to compute a partialness of topics in messages of
 $u$.  We first collect up to 200 messages in order of newness.  Second,
-we determine the topic of each message by using Latent Dirichlet
-Allocation (LDA), which is a generative probabilistic model for
-collections of discrete data such as text corpora.  Then, we compute
-partialness of topics in messages $\mathit{partialness}(u)$ as follows:
+we extract noun phrases from them and we use their phrases as a corpus.
+We extract only noun phrases bacause they characterize contents of the
+messages strongly.  Then, we determine the topic of each message by
+using Latent Dirichlet Allocation (LDA), which is a generative
+probabilistic model for collections of discrete data such as text
+corpora, by using the above corpus.  Finally, we compute partialness of
+topics in messages $\mathit{partialness}(u)$ as follows:
 
 \vspace{-3ex}
 \[
