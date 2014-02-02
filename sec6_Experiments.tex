@@ -46,19 +46,38 @@ followers, followees, and tweets in each category.
 
 \newcolumntype{I}{!{\vrule width 1.5pt}}
 \newcommand{\bhline}[1]{\noalign{\hrule height #1}}
+%\begin{table}[t]
+%\caption{Average and standard deviation of numbers of followers,
+% followees, and tweets in each category \label{table:breakdown}}
+%\begin{center}
+%\begin{tabular}{c|cIc|c|c|c}
+%\multicolumn{2}{cI}{} & \makebox[4em]{i} & \makebox[4em]{ii} &
+% \makebox[4em]{iii} & \makebox[4em]{iv} \\ \bhline{1.5pt}
+% \multirow{2}{*}{follower} & average & 475,679 & 58,142 & 573 & 82,942  \\
+% & standard deviation & 535,894 & 171,784 & 1,389 & 262,161 \\ \hline
+% \multirow{2}{*}{followee} & average & 11,274 & 3,353& 598 & 1,568 \\
+% & standard deviation & 37,906 & 7,218 & 1,545 & 3,594 \\ \hline
+% \multirow{2}{*}{tweet} & average & 9,763 & 9,992 & 8,829 & 5,677 \\
+% & standard deviation & 14,607 & 23,572 & 29,505 & 6,600 \\
+%\end{tabular}
+%\end{center}
+%\end{table}
+
 \begin{table}[t]
-\caption{Average and standard deviation of numbers of followers,
- followees, and tweets in each category \label{table:breakdown}}
+\caption{Breakdown of data set: average and standard deviation of
+ numbers of followers, followees, and tweets in each category shown in
+ the format of \emph{Average\,(SD)} \label{table:breakdown}}
 \begin{center}
-\begin{tabular}{c|cIc|c|c|c}
-\multicolumn{2}{cI}{} & \makebox[4em]{i} & \makebox[4em]{ii} &
- \makebox[4em]{iii} & \makebox[4em]{iv} \\ \bhline{1.5pt}
- \multirow{2}{*}{follower} & average & 475,679 & 58,142 & 573 & 82,942  \\
- & standard deviation & 535,894 & 171,784 & 1,389 & 262,161 \\ \hline
- \multirow{2}{*}{followee} & average & 11,274 & 3,353& 598 & 1,568 \\
- & standard deviation & 37,906 & 7,218 & 1,545 & 3,594 \\ \hline
- \multirow{2}{*}{tweet} & average & 9,763 & 9,992 & 8,829 & 5,677 \\
- & standard deviation & 14,607 & 23,572 & 29,505 & 6,600 \\
+\begin{tabular}{@{}cccc@{}}
+\toprule
+\makebox[6em]{{\bf category}} & \makebox[8em]{{\bf follower}} &
+ \makebox[8em]{{\bf followee}} & \makebox[8em]{{\bf tweet}} \\
+ \cmidrule(lr){1-1}\cmidrule(lr){2-4}
+ i & 475,679\,(535,894) & 11,274\,(37,906) & 9,763\,(14,607) \\
+ ii & 58,142\,(171,784) & 3,353\,(7,218) & 9,992\,(23,572) \\
+ iii & 573\,(1,389) & 598\,(1,545) & 8,829\,(29,505) \\
+ iv & 82,942\,(262,161) & 1,568\,(3,594) & 5,677\,(6,600) \\
+\bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -139,13 +158,15 @@ attribute, a bold number shows when the precision becomes the highest.
  users using a couple of attributes measuring consistency separately
  \label{table:Classify Target Users}}
 \begin{center}
-\begin{tabular}{cIccc|c}
- & \multicolumn{3}{c|}{Probablistic Model} &
- Subtracting Model \\
+\begin{tabular}{ccccc}
+ \toprule
+ {\bf attributes} & \multicolumn{3}{c}{{\bf Probablistic Model}} & {\bf
+ Subtracting Model} \\
  & $\gamma = 0.01$ & $\gamma = 0.03$ & $\gamma = 0.05$ & \\
- \bhline{1.5pt}
- common terms & {\bf 0.861} & 0.850 & 0,839 & 0.850 \\ \hline
+ \cmidrule(lr){1-1}\cmidrule(lr){2-4}\cmidrule(lr){5-5}
+ common terms & {\bf 0.861} & 0.850 & 0,839 & 0.850 \\
  common followees & 0.828 & 0.828 & 0.817 & {\bf 0.833} \\
+ \bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -248,12 +269,16 @@ correlation coefficient 0.232.
 \caption{Precision of the final classification of target users and non
  target users \label{table:Final Precision}}
 \begin{center}
-\begin{tabular}{cIcc|cccc}
- & \multicolumn{2}{c|}{Baseline} & \multicolumn{4}{c}{Proposed Method} \\
- \makebox[5em]{Method} & \makebox[4em]{follower} & \makebox[3em]{SVM} &
- \makebox[3em]{max} & \makebox[3em]{avg} & \makebox[4em]{SVM} &
- \makebox[4em]{decision tree} \\ \bhline{1.5pt}
- Precision & 0.878 & 0.828 & 0.856 & 0.872 & {\bf 0.944} & 0.906 \\
+\begin{tabular}{cccccc}
+ \toprule
+ \multicolumn{2}{c}{{\bf Baseline}} & \multicolumn{4}{c}{{\bf Proposed
+ Method}} \\
+ \makebox[4em]{follower} & \makebox[4em]{SVM} & \makebox[4em]{max} &
+ \makebox[4em]{avg} & \makebox[4em]{SVM} & \makebox[5em]{decision
+ tree} \\
+ \cmidrule(lr){1-2}\cmidrule(lr){3-6}
+ 0.878 & 0.828 & 0.856 & 0.872 & {\bf 0.944} & 0.906 \\
+ \bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -293,49 +318,52 @@ certain degree of high precision.
 \caption{Details of the results of a part of users
  \label{table:Details}}
 \begin{center}
-\scalebox{0.75}{
-\begin{tabular}{ccccccc}
- user  & term \& followee & $\mathit{local rate}$ &
- $\mathit{global rate}$ & $\mathit{SubsetScore}$ &
- $\mathit{SpecificityScore}$ \\ \bhline{1.5pt}
- target user & & & & & \\ \hline
- @MCstaff\_Fukuoka & Fukuoka & 0.563 & 0.047 & 0.390 & \\
+\scalebox{0.73}{
+\begin{tabular}{cccccc}
+ \toprule
+ {\bf target user}  & {\bf term} \& {\bf followee} & $\mathit{local\,
+ rate}$ & $\mathit{global\,rate}$ & $\mathit{SubsetScore}$ &
+ $\mathit{SpecificityScore}$ \\ \midrule
+ \multirow{6}{*}{@MCstaff\_Fukuoka} & Fukuoka & 0.563 & 0.047 & 0.390 & \\
  & music & 0.114 & 0.096 & 0.076 & 0.235 \\
- & Hakata & 0.095 & 0.003 & 0.076 & \\ \cline{2-7}
+ & Hakata & 0.095 & 0.003 & 0.076 & \\ \cmidrule(lr){2-6}
  & @fukuoka\_yokane & 0.069 & 0.023 & 0.046 &\\
  & @f\_sunpalace & 0.063 & 0.023 & 0.040 & 0.010 \\
- & @mbc\_o2\_eiji & 0.059 & 0.028 & 0.031 & \\ \hline
- @Jars0830 & Arashi & 0.439 & 0.039 & 0.304 & \\
+ & @mbc\_o2\_eiji & 0.059 & 0.028 & 0.031 & \\ \midrule
+ \multirow{6}{*}{@Jars0830} & Arashi & 0.439 & 0.039 & 0.304 & \\
  & participation & 0.190 & 0.026 & 0.131 & 0.233 \\
- & line & 0.130 & 0.045 & 0.090 & \\ \cline{2-7}
+ & line & 0.130 & 0.045 & 0.090 & \\ \cmidrule(lr){2-6}
  & @Yamnos5 & 0.249 & 0.004 & 0.246  & \\
  & @ars\_762 & 0.109 & 0.072 & 0.037 & 0.067 \\
- & @nino\_xoxo\_ & 0.070 & 0.033 & 0.037 & \\ \hline
- @pa\_ko065 & piano & 0.528 & 0.009 & 0.366 & \\
+ & @nino\_xoxo\_ & 0.070 & 0.033 & 0.037 & \\ \midrule
+ \multirow{6}{*}{@pa\_ko065} & piano & 0.528 & 0.009 & 0.366 & \\
  & music & 0.250 & 0.096 & 0.173 & 0.223 \\
- & Sapporo & 0.139 & 0.022 & 0.096 & \\ \cline{2-7}
+ & Sapporo & 0.139 & 0.022 & 0.096 & \\ \cmidrule(lr){2-6}
  & @mofu\_co & 0.500 & 0.001 & 0.499  & \\
  & @miko3535 & 0.500 & 0.003 & 0.497 & 0.277 \\
- & @shimagaraneko & 0.472 & 0.002 & 0.470 & \\ \bhline{1.5pt}
- non target user & & & & & \\ \hline
- @tenkijp & Tokyo & 0.033 & 0.196 & 0 & \\
+ & @shimagaraneko & 0.472 & 0.002 & 0.470 & \\ \bottomrule
+ \toprule
+ {\bf non target user}  & {\bf term} \& {\bf followee} & $\mathit{local\,rate}$ &
+ $\mathit{global\,rate}$ & $\mathit{SubsetScore}$ &
+ $\mathit{SpecificityScore}$ \\ \midrule
+ \multirow{6}{*}{@tenkijp} & Tokyo & 0.033 & 0.196 & 0 & \\
  & hobby & 0.022 & 0.095 & 9.28e-16 & 2.51e-5 \\
- & music & 0.021 & 0.096 & 1.18e-15 & \\ \cline{2-7}
+ & music & 0.021 & 0.096 & 1.18e-15 & \\ \cmidrule(lr){2-6}
  & @tenkijp\_jishin & 0.421 & 10.4 & 0  & \\
  & @Kantei\_Saigai & 0.358 & 14.8 & 0 & 0 \\
- & @bouei\_saigai & 0.277 & 6.31 & 0 & \\ \hline
- @masason & fan & 0.059 & 0.676 & 2.62e-17 \\
+ & @bouei\_saigai & 0.277 & 6.31 & 0 & \\ \midrule
+ \multirow{6}{*}{@masason} & fan & 0.059 & 0.676 & 2.62e-17 \\
  & Tokyo & 0.027 & 0.196 & 0 & 1.20e-12 \\
- & music & 0.024 & 0.096 & 1.34e-15 & \\ \cline{2-7}
+ & music & 0.024 & 0.096 & 1.34e-15 & \\ \cmidrule(lr){2-6}
  & @shigeruishiba & 0.050 & 0.939 & 0 & \\
  & @WSJJapan & 0.066 & 3.56 & 0 & 0 \\
- & @HeizoTakenaka & 0.05 & 3.62 & 0 & \\ \hline
- @Kantei\_Saigai & Tokyo & 0.034 & 0.196 & 0 & \\
+ & @HeizoTakenaka & 0.05 & 3.62 & 0 & \\ \midrule
+ \multirow{6}{*}{@Kantei\_Saigai} & Tokyo & 0.034 & 0.196 & 0 & \\
  & hobby & 0.027 & 0.095 & 1.14e-15 & 3.52e-9 \\
- & movie & 0.019 & 0.043 & 1.85e-7 & \\ \cline{2-7}
+ & movie & 0.019 & 0.043 & 1.85e-7 & \\ \cmidrule(lr){2-6}
  & @MofaJapan\_ITPR & 0.056 & 0.597 & 0 & \\
  & @CAO\_BOUSAI & 0.203 & 0.834 & 0 & 0.001 \\
- & @MofaJapan\_jp & 0.062 & 0.950 & 0 & \\ \hline
+ & @MofaJapan\_jp & 0.062 & 0.950 & 0 & \\ \bottomrule
 \end{tabular}
 }
 \end{center}
@@ -384,30 +412,36 @@ account is small.  The other non target users, @masason and
 \begin{table}[t]
 \caption{Precision of the classification of target users
  \label{table:Precision}}
- \begin{center}
-\begin{tabular}{cIc|c}
- & \makebox[6em]{SVM} & \makebox[6em]{decision tree} \\ \bhline{1.5pt}
- \makebox[10em]{3-class classifier} & 67.8 & 55.6 \\ \hline
- 2 binary classifiers & {\bf 68.9} & 53.3 \\
+\begin{center}
+\begin{tabular}{cccc}
+ \toprule
+ \multicolumn{2}{c}{{\bf SVM}} & \multicolumn{2}{c}{{\bf decision
+ tree}} \\
+ \makebox[6em]{3-class} & \makebox[6em]{2 binary} &
+ \makebox[6em]{3-class} & \makebox[6em]{2-binary} \\
+ \cmidrule(lr){1-2}\cmidrule(lr){3-4}
+ 0.678 & {\bf 0.689} & 0.556 & 0.533 \\
+ \bottomrule
 \end{tabular}
- \end{center}
+\end{center}
 \end{table}
 
-\hdashlinewidth=0.5mm
 \begin{table}[t]
 \caption{Precision of SVMs without each feature \label{table:Classifier
  Details}}
 \begin{center}
-\begin{tabular}{ccIc|cccc}
- \multicolumn{2}{cI}{Removed Feature} & \makebox[4em]{with all} &
- \makebox[3em]{i} & \makebox[3em]{ii} & \makebox[3em]{iii} &
- \makebox[3em]{iv} \\ \bhline{1.5pt}
- \multicolumn{2}{cI}{3-class SVM} & 67.8 & {\bf 64.4} & 72.2 & 67.8 &
- 65.5 \\ \hline
- \multicolumn{2}{cI}{2 binary SVMs} & 68.9 & {\bf 65.6} & 71.1 & 67.8 &
- 67.8 \\ \hdashline
- \makebox[4em]{} & \makebox[3em]{topic} & 85.6 & {\bf 81.1} & 86.7 & 84.4 & 84.4 \\
- \makebox[4em]{} & \makebox[3em]{user} & 83.3 & 84.4 & 84.4 & 83.3 & {\bf 82.2} \\
+\begin{tabular}{ccccc}
+ \toprule
+ {\bf Removed Feature} & \makebox[5em]{{\bf 3-class}} &
+ \makebox[5em]{{\bf 2 binary}} & \makebox[5em]{{\bf -user}} &
+ \makebox[5em]{{\bf -topic}} \\
+ \cmidrule(lr){1-1}\cmidrule(lr){2-2}\cmidrule(lr){3-5}
+ with all & 0.678 & 0.689 & 0.856 & 0.833 \\
+ i & {\bf 0.644} & {\bf 0.656} & {\bf 0.811} & 0.844 \\
+ ii & 0.722 & 0.711 & 0.867 & 0.844 \\
+ iii & 0.678 & 0.678 & 0.844 & 0.833 \\
+ iv & 0.655 & 0.678 & 0.844 & {\bf 0.822} \\
+ \bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -441,12 +475,15 @@ lowest.
 \caption{A part of topics extracted by LDA
  \label{table:topics}}
 \begin{center}
-\begin{tabular}{c|c}
-topic id & \makebox[25em]{words} \\ \bhline{1.5pt}
-1 & news, program, broadcast, morning, night, tonight \\
-2 & update, blog, picture, smart phone, weather\\
-3 & worst, typhoon, Sea of Japan, electricity \\
-4 & earthquake, observation, focus, concern, teacher \\
+\begin{tabular}{cc}
+ \toprule
+ \makebox[3em]{id} & \makebox[25em]{words} \\
+ \cmidrule(lr){1-1}\cmidrule(lr){2-2}
+ 1 & news, program, broadcast, morning, night, tonight \\
+ 2 & update, blog, picture, smart phone, weather\\
+ 3 & worst, typhoon, Sea of Japan, electricity \\
+ 4 & earthquake, observation, focus, concern, teacher \\
+ \bottomrule
 \end{tabular}
 \end{center}
 \end{table}

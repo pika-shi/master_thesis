@@ -22,9 +22,10 @@ two models.  Furthermore, we proposed a couple of attributes for
 extracting consistency subsets from the follower set of the user: common
 terms in profiles and location information and common followees.  Then,
 we finally proposed the method of classifying Twitter users based on the
-score.
+score.  We conducted the experiment and our experimental results
+confirmed that these two techniques improve the precision.
 
-実験結果
+%実験結果
 
 In addition, in this study, in regard to Twitter users classified into
 ``he target specificity is high”''y thehe above method, we proposed thy
@@ -38,21 +39,4 @@ categories: (1) they publish information specified for certain topics,
 categories based on various features of the user which potentially
 correlate with each cause, and we determined why the target specificity
 is high by using them.
-実験結果
-
-今後の課題としては，以下のものが挙げられる．\vspace{1ex}
-
-{\bf (1)} 本研究の予備実験における正解データデータセットは，決して十分な
-データ数とは言えず，信頼性も十分に担保されているとはいえない．今後，さら
-に正解データ数を増やし，かつその信頼性を担保することで，再実験を行うことを検討し
-ている．また，今回は，\ref{sec:Determine Specificity}節の対象限定性を求
-める手法に関する予備実験しか行っていないので，\ref{sec:SVM}節の対象限
-定性の高いユーザの分類手法に関する実験も行う予定である．\vspace{1ex}
-
-{\bf (2)} \ref{sec:result}節や\ref{sec:detail}節で示したような，提案手法
-の改善について検討を行うことで，提案手法の有効性をさらに向上させることを
-検討している．\vspace{1ex}
-
-{\bf (3)} \ref{sec:Application}節で示した，Twitter検索の際に，Twitterユー
-ザの対象限定性を考慮して記事の分類を行うアプリケーションの実装を行う予定
-である．
+%実験結果
