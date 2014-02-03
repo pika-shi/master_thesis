@@ -2,46 +2,48 @@
 \label{sec:ClassificationMethod1}
 
 In this chapter, we explain the method of classifying Twitter users
-based on the target specificity of their information publishing defined
+based on target specificity of their information publishing defined
 in \ref{sec:Target Specificity}.
 
 \subsection{Assumptions and Outline of the Method}
 \label{subsec:Assumptions}
 
-In this study, we assume that a follower set of a Twitter user is the
-user set randomly sampled from users included in target scope of his/her
+In this study, we assume that a follower set of a user is the
+user set randomly sampled from users included in target scope of his
 information publishing.  Thus, we focus on the follower set of a user we
 intend to classify.
 
-A user who publishes information to the public widely, such as a user
-who publishes information about world news, is supposed to be followed
-by various types of users.  On the contrary, followers of a user who
-publishes information specified in certain users are supposed to be
-consistent in a certain noticeable character.  For example, a user who
-publishes technical information about programming is supposed to be
-mainly followed by programmers, and a user who communicates with his/her
-friends is supposed to be mainly followed by his/her friends.  Based on
-the above, we classify a user whether his/her followers are consistent
-in a certain noticeable character and are difficult to suppose to be
-randomly sampled from all Twitter users, or his/her followers are not
-consistent in any noticeable character.  Figure~\ref{fig:High
+A user publishing information to the public widely, e.g., a user
+publishing information about world news, is supposed to be followed
+by various types of users.  On the other hand, followers of a user
+publishing information specified in certain users are supposed to be
+consistent in a certain noticeable character.  For example, a user
+publishing technical information about programming is supposed to be
+mainly followed by programmers, and a user communicating with his
+friends is supposed to be mainly followed by his friends.
+
+Based on the above, we classify a user whether his followers are consistent
+in a certain noticeable character and difficult to suppose to be
+randomly sampled from all Twitter users, or his followers are not
+consistent in any noticeable characters.  Figure~\ref{fig:High
 Consistency} (a) shows the case of followers of a user being consistent
-in the character noticeable $A$.  In such a case, his/her followers are
+in the noticeable character $A$.  In such a case, his followers are
 supposed to incline toward a part of all Twitter users, thus we consider
-that the more consistent his/her followers are in a certain noticeable
-character, the higher his/her target specificity is.
+that the more consistent his followers are in a certain noticeable
+character, the higher his target specificity is.
 
 In addition to this parameter: whether followers of a user are
 consistent in a certain noticeable character or not, we consider
-whether his/her follower set are covered with consistency subsets which
+whether his follower set are covered with consistency subsets which
 cover intermediately widely.  Here, \emph{a consistency subset} denotes
 a subset which have consistency in a certain noticeable character.  As
 show in Figure~\ref{fig:High Consistency} (b), in regard to followers of
 a user, when half of them are consistent in the noticeable character $A$
-and the others are consistent in the character noticeable $B$, it cannot
+and the others are consistent in the character noticeable $B$.  It is
+not able to
 be said that they are consistent in one noticeable character, but
-his/her follower set are covered with two consistency subsets which
-cover intermediately widely.  In such a case, we consider that his/her
+his follower set are covered with two consistency subsets cobering the
+set intermediately widely.  In such a case, we consider that his
 target specificity is high.
 
 {\footnotesize
@@ -54,46 +56,47 @@ target specificity is high.
 \end{figure}
 }
 
-These two parameters are summarized as follows.
+These two parameters are summarized as follows:
 
 \begin{description}
 \item[(a)] The more consistent followers of a user are in a certain
-           noticeable character, the higher his/her target specificity
-           is.
-\item[(b)] The more covered his/her follower set is with consistency
-           subsets which cover intermediately widely, the higher his/her
+           noticeable character, the higher his target specificity
+           is, and
+\item[(b)] The more covered his follower set is with consistency
+           subsets covering the set intermediately widely, the higher his
            target specificity is.
 \end{description}
 
-The target specificity of a user is quite high when his/her followers
+Target specificity of a user is quite high when his followers
 are consistent in one noticeable character, and it becomes lower as they
-do not become consistent in any noticeable character.
+do not become consistent in any noticeable characters.
 
 \subsection{Classification Algorithm}
 \label{subsec:Algorithm}
 
-In this subchapter, we explain the algorithm of computing a score of the
+In this subchapter, we explain the algorithm of computing a score of
 target specificity of a user $u$ based on the outline mentioned in the
 above subchapter.
 
-First, we collect all consistency subsets included in $u$'s follower set
-$F_u$.  Then, in regard to each subset $S_{F_uc}$ which is consistent in
+First, we collect all consistency subsets included in $F_u$, the
+follower set of $u$.  Then, in regard to each subset $S_{F_uc}$, which
+is consistent in
 the character $c$ included in $F_u$, we compute
 $\mathit{SubsetScore}(S_{F_uc})$ which denotes to what degree users in
-$S_{F_uc}$ are consistent in $c$. We will propose two models which
-compute $\mathit{SubsetScore}(S_{F_uc})$ in \ref{subsec:Scoring}.
+$S_{F_uc}$ are consistent in $c$. We will propose two models
+computing $\mathit{SubsetScore}(S_{F_uc})$ in \ref{subsec:Scoring}.
 
-Second, in descending order of $\mathit{SubsetScore}(S_{F_uc})$, we give
+Second, in the descending order of $\mathit{SubsetScore}(S_{F_uc})$, we give
 this score to each follower $f$ in $S_{F_uc}$ as
 $\mathit{UserScore}_{\mathit{att}}(f)$, where $\mathit{att}$ means a
-attribute measuring consistency, and we explain two attributes in
+attribute measuring consistency, and we will explain two attributes in
 \ref{subsec:Attributes}. Here, we do not give a score to $f$ if
 he/she already has a score. Then, we repeat this step over all
 $\mathit{SubsetScore}(S_{F_uc})$.  In regard to users who are not given
 a score after the above repeat, we set $0$ to them.  In other words, in
 regard to each $f$ of $u$, we give
 $\mathit{UserScore}_{\mathit{att}}(f)$ to the largest
-$\mathit{SubsetScore}(S_{F_uc})$ of $S_{F_uc}$ in which $f$ is included
+$\mathit{SubsetScore}(S_{F_uc})$ of $S_{F_uc}$ in which $f$ is included,
 as follows:
 
 \vspace{-1ex}
@@ -104,8 +107,8 @@ as follows:
 \vspace{-2ex}
 
 Then, we take average of all $\mathit{UserScore_{\mathit{att}}(f)}$ for
-$\mathit{SpecificityScore_{\mathit{att}}(u)}$, a score of the target
-specificity of $u$, as follows:
+$\mathit{SpecificityScore_{\mathit{att}}(u)}$, a score of target
+specificity of $u$ using the attribute $\mathit{att}$, as follows:
 
 \vspace{-1ex}
 \[
@@ -118,7 +121,7 @@ For example, suppose the case shown in Figure~\ref{fig:Algorithm}.
 We assume that a follower set of a user $u$ have three consistency
 subsets: $A$, $B$, and $C$, and $\mathit{SubsetScore}(A)$,
 $\mathit{SubsetScore}(B)$, and $\mathit{SubsetScore}(C)$ are $3$, $2$,
-and $1$ respectively.  In descending order of
+and $1$ respectively.  In the descending order of
 $\mathit{SubsetScore}(S_{F_uc})$, i.e., in order of $A$, $B$, and $C$,
 we give scores to each follower $f$ as
 $\mathit{UserScore}_{\mathit{att}}(f)$ as shown in
@@ -136,93 +139,86 @@ $\mathit{SpecificityScore_{\mathit{att}}(u)}$.
 \end{figure}
 }
 
-This is how we compute a score of the target specificity of $u$.  Below
-is a summary of the algorithm:
+This is how we compute a score of target specificity of $u$ using the
+attribute $\mathit{att}$.  Below is a summary of the algorithm:
 
 \begin{description}
-\item[1.]  we collect all consistency subsets including the follower set,
-\item[2.]  we score each consistency subset based on to what degree users
+\item[1.]  we collect all consistency subsets included in the follower set,
+\item[2.]  we score each consistency subset based on to what extent users
            in it are consistent in a certain noticeable character,
-\item[3.]  in descending order of the above score, we repeatedly give it
-           to each user in the subset, and
-\item[4.]  we take average of scores for a score of the target
-           specificity.
+\item[3.]  in the descending order of the above scores, we repeatedly
+           give the score to each user in the subset, and
+\item[4.]  we take average of scores for a score of target specificity.
 \end{description}
 
 \subsection{Scoring Models of Consistency Subsets}
 \label{subsec:Scoring}
 
-In this subchapter, we explain a couple of models: the probabilistic
-model and the subtracting model which compute
-$\mathit{SubsetScore(S_{F_uc})}$ mentioned in \ref{subsec:Algorithm}.
-We explain these two models in the follow.
+In this subchapter, we explain a couple of models in the follow: the
+probabilistic model and the subtracting model which compute
+$\mathit{SubsetScore(S_{F_uc})}$ mentioned in \ref{subsec:Algorithm}
 
 \subsubsection{Probablistic Model}
 \label{subsubsec:Probablistic}
 
-In this model, in regard to the consistency subset $S_{F_uc}$ which is
+In this model, in regard to the consistency subset $S_{F_uc}$ being
 consistent in the character $c$ in the follower set $F_u$, we consider
 that how low the probability that the user set of the same size as $F_u$
-randomly sampled from the set of all Twitter users includes the subset
-which is consistent in $c$ and whose size is $|S_{F_uc}|$ and over.
-The lowness of the probability means that $S_{F_u}$ is inclining toward
-a part of the set of all Twitter users, so it is able to be said that
+randomly sampled from all Twitter users includes the subset
+being consistent in $c$ and whose size is $|S_{F_uc}|$ and over.
+The lowness of the probability means that $S_{F_u}$ is inclining to
+a part of all Twitter users, so it is able to be said that
 $S_{F_uc}$ has consistency in a noticeable character if the probability
 is low.  Thus, the lower the probability is, the higher score we give.
-On the contrary, if the probability is
+On the other hand, if the probability is
 not so low,  the deviation between $S_{F_uc}$ and the user set randomly
 sampled from all Twitter users may be small, and it is difficult to say
 that $S_{F_uc}$ has consistency in a noticeable character.  Thus, we
 give a low score in this case.
 
 In addition to this parameter: how low the probability mentioned above
-is, we consider that at what rate $S_{F_uc}$ covers with $F_u$.  The
-more covered $F_u$ is with $S_{F_uc}$, the higher score we give.  Based
-on these two parameters, we compute $\mathit{SubsetScore(S_{F_uc})}$.
+is, we consider the covering rate of $S_{F_uc}$ to $F_u$.  The higher
+the covering rate of $S_{F_uc}$ to $F_u$ is, the higher score we give.
+Based on these two parameters, we compute $\mathit{SubsetScore(S_{F_uc})}$.
 
 These two parameters are summarized as follows.
 \begin{itemize}
 \item The lower the probability that the user set of the same size as $F_u$
-randomly sampled from the set of all Twitter users includes the subset
-which is consistent in the same character as the character of $S_{F_uc}$
+randomly sampled from all Twitter users includes the subset
+being consistent in the same character as the character of $S_{F_uc}$
 and whose size is $|S_{F_uc}|$ and over, the higher score we give.
-\item The more covered $F_u$ is with $S_{F_uc}$, the higher score we give.
+\item The higher the covering rate of $S_{F_uc}$ to $F_u$ is, the higher
+      score we give.
 \end{itemize}
 
-Then, we define this model more formally.  First, we compute $P(u)$, the
-probability that the user set of the size of $|F_u|$ randomly sampled
-from the set of all Twitter users includes the subset which is
-consistent in $c$ and whose size is $|S_{F_uc}|$, by the formula below:
+Then, we define this model more formally.  First, we compute
+$P(S_{F_uc})$, the probability that the user set of the size of $|F_u|$
+randomly sampled from the set of all Twitter users includes the subset
+being consistent in $c$ and whose size is $|S_{F_uc}|$ and over, by the
+formula below:
 
 \vspace{-1ex}
 \[
  P(S_{F_uc}) = \int_{|S_{F_uc}|}^{n} \binom{n}{x} p^x (1-p)^{n - x}
- dx,\;\;\;\;\;n = |F_u|,\;\;\;\;\;p = \frac{|S_A|}{|A|}
+ dx,\;\;\;\;\;n = |F_u|,\;\;\;\;\;p = \frac{|S_{Ac}|}{|A|}
 \]
 \vspace{-2ex}
 
-\noindent{where $A$ is the set of all Twitter users, and $S_A$ is the subset which
-is consistent in the character included in $A$.  The parameter $x$ in
-the above formula is based on a binomial distribution.}
+\noindent{where $A$ is the set of all Twitter users, and $S_{Ac}$ is the
+subset which is consistent $c$ in the character included in $A$.  The
+parameter $x$ in the above formula is based on a binomial distribution.}
 
 In addition, by adding the covering rate of $S_{F_uc}$ to $F_u$ to the
 above parameter, we compute $\mathit{SubsetScore(S_{F_uc})}$.  However,
 there is some possibility that $P(S_{F_uc})$ is excessively low because
-$S_{F_uc}$ has a remarkable character, e.g., only a few users of all
-users have the character, in spite of the size of $S_{F_uc}$ is very
+$S_{F_uc}$ has a remarkable character, e.g., the character only a few
+users of all users have, in spite of the size of $S_{F_uc}$ is very
 small.  In this model, we expect that the consistency subset covers the
 follower set at least intermediately widely.  So in such a case, we do
-not give any scores to $S_{F_uc}$.  More specifically, we determine a
+not give any scores to $S_{F_uc}$.  More formally, we determine a
 threshold $\gamma$ which cuts down the above case.
 
 Then, we compute $\mathit{SubsetScore(S_{F_uc})}$ by the formula below:
-
-%\vspace{-1ex}
-%\[
-% \mathit{SubsetScore}(S_{F_uc}) = \frac{|S_{F_uc}|}{|F_u|} \log (1 -
-% P(S_{F_uc})).
-%\]
-%\vspace{-2ex}
 
 \vspace{-1ex}
 \[
@@ -235,18 +231,18 @@ Then, we compute $\mathit{SubsetScore(S_{F_uc})}$ by the formula below:
 \vspace{-2ex}
 
 This is how we compute $\mathit{SubsetScore(S_{F_uc})}$ by using
-probabilistic technique.
+the probabilistic technique.
 
 \subsubsection{Subtracting Model}
 \label{subsubsec:Subtracting}
 
 In this model, in regard to the consistency subset $S_{F_uc}$, we
 consider a covering rate of $S_{F_uc}$ to $F_u$ in comparison to a
-covering rate of the subset which is consistent in the $c$ to the set of
+covering rate of the subset which is consistent in the character $c$ to the set of
 all Twitter users.  We call the former \emph{a local rate} and the
 latter \emph{a global rate}.  The fact that a local rate is high and a
 global rate is low means $S_{F_uc}$ has consistency in a noticeable
-character and is including toward a part of the set of all Twitter
+character and is including toward a part of all Twitter
 users.  If a local rate is low or a global rate is high, it is difficult
 to say that $S_{F_uc}$ has consistency in a noticeable character.  Based
 on the above, we compute $\mathit{SubsetScore(S_{F_uc})}$ by the formula
@@ -264,19 +260,19 @@ simultaneously as follows:
 
 \begin{itemize}
 \item a covering rate of $S_{F_uc}$ to $F_u$ is high, and
-\item a covering rate of the subset which is consistent in the same
+\item a covering rate of the subset being consistent in the same
       character as the character of $S_{F_uc}$ to the set of all Twitter
       users is low.
 \end{itemize}
 
 This is how we compute $\mathit{SubsetScore(S_{F_uc})}$by using
-subtracting technique.
+the subtracting technique.
 
 \subsection{Attributes for Extracting Consistency Subsets}
 \label{subsec:Attributes}
 
-In this subsubchapter, we explain a couple of attributes measuring
-consistency: common terms in profiles and location information and
+In this subchapter, we explain a couple of attributes measuring
+consistency: common terms in profiles and location information, and
 common followees.  By using these attributes, we extract consistency
 subsets from the follower set of a user.  We explain these two
 attributes in the follow.
@@ -285,7 +281,7 @@ attributes in the follow.
 \label{subsec:Terms}
 
 As the first attribute measuring consistency, we consider common terms
-included in profiles and local information of users in the follower set.
+included in profiles and local information of followers.
 
 There is a high possibility that users belonging to the same community
 or having the same interest have the same term in their profiles or
@@ -311,13 +307,13 @@ terms in profiles and location information.}
 \label{subsec:Followees}
 
 As the second attribute measuring consistency, we consider common
-followees of users in the consistency subset.
+followees of followers.
 
-Users who are consistent in a certain noticeable character often have
+Users being consistent in a certain noticeable character often have
 the common tendency of the follow.  Users belonging to the same
 community are dense on the social graph, so there is a high possibility
-that they follow common users in the community.  And also, followers of
-a user publishing technical information about programming is considered
+that they follow common users in the community.  In addition, followers of
+a user publishing technical information about programming is supposed
 to follow another user publishing useful information about programming
 in common.  Thus, we focus on the tendency of the follow and extract
 such followees for measuring consistency.
@@ -338,9 +334,9 @@ consistency subsets by using common followees.}
 \subsection{Final Classification Based on Target Specificity}
 \label{subsubsec:Final Classification}
 
-In this subsubchapter, we explain the method of computing the target
-specificity of a Twitter user by using scores computed up to this
-point.  In addition, based on the target specificity, we explain the
+In this subchapter, we explain the method of computing target
+specificity of a user by using scores computed up to this
+point.  In addition, based on target specificity, we also explain the
 method of classifying users.
 
 The $\mathit{SpecificityScore}_{{\mathit{att}}}(u)$ computed in
@@ -349,20 +345,44 @@ The $\mathit{SpecificityScore}_{{\mathit{att}}}(u)$ computed in
 \begin{itemize}
 \item the more consistent followers of a user are in a noticeable
       character, or
-\item the more covered his/her follower set are with consistency
-      subsets which cover intermediately widely.
+\item the more covered his follower set are with consistency
+      subsets covering it intermediately widely.
 \end{itemize}
 
-Then, we compute a score of the target specificity of $u$. We first
+Then, we compute a score of target specificity of $u$. We first
 compute $\mathit{SpecificityScore}_{{\mathit{term}}}(u)$, which is using
 common terms in profiles and location information as an attribute
 measuring consistency mentioned in \ref{subsec:Terms}, and
 $\mathit{SpecificityScore}_{{\mathit{followee}}}(u)$, which is using
-common followees mentioned in \ref{subsec:Followees}.  Then, we take the
-larger one of these two scores for the target specificity of $u$,
-because the larger one characterizes the target specificity more
-strongly than the other.  More formally, we compute
-$\mathit{TargetSpecificity}(u)$ by the formula below:
+common followees mentioned in \ref{subsec:Followees}.  Next, we propose
+a couple of approaches computing target specificity of $u$ by using the
+above two scores in the follow.
+
+\begin{description}
+\bf{\item[(1)] Average and maximum of two scores}
+\label{item:Avg and Max}
+\end{description}
+
+In the first approach, we take the average and the maximum scores of two
+scores.  For comparison of two scores, we first normalize them by
+computing the deviation values.
+
+Then, we take the average score of two scores for target specificity of
+$u$ by the formula below:
+
+\vspace{-4ex}
+\[
+ \mathit{TargetSpecificity}(u) = {\rm avg} \{
+ \mathit{SpecificityScore}_{{\mathit{term}}}(u),
+ \mathit{SpecificityScore}_{{\mathit{followee}}}(u)\}
+\]
+\vspace{-4ex}
+
+In addition to the average score, we also take the larger one of two
+scores for target specificity of $u$, because the larger one is supposed to
+characterize target specificity more strongly than the other.  More
+formally, we compute $\mathit{TargetSpecificity}(u)$ by the formula
+below:
 
 \vspace{-4ex}
 \[
@@ -372,9 +392,26 @@ $\mathit{TargetSpecificity}(u)$ by the formula below:
 \]
 \vspace{-4ex}
 
-Then, we determine a threshold $\delta$ which can classifies target
-users and non target users accurately the most, and we classify them by
-$\delta$.  More formally, we classify them as follows:
+This is how we compute a score of target specificity of $u$ using the
+approach taking the average and the maximum of two scores.
+
+\begin{description}
+\bf{\item[(2)] Binary classifier with the features of two scores}
+\label{item:Binary Classifier}
+\end{description}
+
+In the second approach, we construct a binary classifier with the feature of
+two scores.  If target specificity of $u$ is high, we set
+$\mathit{TargetSpecificity}(u)$ to 1, and otherwise we set it to 0.  We
+adopt SVM and decision tree as a classifier.
+
+%This is how we compute a score of target specificity of $u$ using the
+%approach using a binary classifier with the feature of two scores.
+
+Then we classify users based on target specificity.  We determine a
+threshold $\delta$ which can classify target users and non target users
+accurately the most, and we classify them by $\delta$.  More formally,
+we classify them as follows:
 
 \vspace{-1ex}
 \[
@@ -386,4 +423,5 @@ u\mbox{ is a }\mathit{non}\mbox{ }\mathit{target}\mbox{ }\mathit{user}, & \mbox{
 \]
 \vspace{-2ex}
 
-This is how we the target specificity of a Twitter user.
+This is how we classify users into target users and non target users
+based on target specificity.
