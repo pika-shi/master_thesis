@@ -114,7 +114,7 @@ determined a threshold $\delta$ which can classify target users and
 non target users accurately the most, and evaluated the classification
 results with $\delta$.
 
-Second, we conducted the experiments evaluating the method of determing
+Second, we conducted the experiments evaluating the method of determining
 why target specificity of the users is high in regard to target
 users mentioned in \ref{sec:ClassificationMethod2}.  We extracted 30 users
 from each category of (ii), (iii), and (iv), and used 90 users
@@ -148,7 +148,7 @@ Dirichlet Allocation (LDA).
   Specificity}
 \label{subsec:Results of Method1}
 
-In this subchapter, we show the results of the experiments classifiying
+In this subchapter, we show the results of the experiments classifying
 users based on target specificity of their information publishing.
 
 We first show the accuracy of the classification of target users and
@@ -189,7 +189,7 @@ characterize target users though the covering rate of $S_{F_uc}$ to
 $F_u$ is not high, and can contribute the classification of target users
 and non target users.  But for both attributes, the difference between
 the accuracy of the probablistic model and that of the subtracting
-model is not so big.  So it is suppposed that these two models are
+model is not so big.  So it is supposed that these two models are
 about the same effect.
 
 In addition, the accuracy using common terms as attributes is higher
@@ -221,13 +221,13 @@ i.e., the probablistic model with $\gamma=0.01$ for common terms and the
 subtracting model for common
 followees. Figure~\ref{fig:histogram} shows the histogram of specificity
 scores of each attribute on target users and non target users.  In the
-case of using common terms as attiributes, specificity scores of most
-non target users are very small, with the average 0.004.  On the othe
+case of using common terms as attributes, specificity scores of most
+non target users are very small, with the average 0.004.  On the other
 hand, those of most target users are large, and even the average, 0.065,
 is as same as the maximum score for non target users, i.e., 0.067.  A
 similar trend is apparent in the case of using common followees as
 attributes: even the median for target users, i.e., 0.050, is larger
-than the maximam score for non target users, i.e., 0.043.
+than the maximum score for non target users, i.e., 0.043.
 
 {\footnotesize
 \begin{figure}[t]
@@ -258,13 +258,13 @@ users.  More and more target users cumulate as scores become smaller,
 and more and more non target users cumulate as scores become larger.
 Therefore, the score on which the sum of numbers of target users and non
 target users is the largest is the score which can classify target
-users and non taraget users accurately the most, and we set this score
+users and non target users accurately the most, and we set this score
 to the threshold $\delta$.  In each case of using common terms and
 common followees as attributes, we take $\delta$ for 0.009 and 0.012
 respectively.
 
 Next, we show the relationship between two attributes, i.e., common
-tersm and common followees.  Figure~\ref{fig:distribution} shows a
+terms and common followees.  Figure~\ref{fig:distribution} shows a
 scatter diagram based on specificity scores of these two attributes on
 target users and non target users.  On target users, points of scores of
 these attributes are widely distributed and have weak positive
@@ -272,7 +272,7 @@ correlation, with the correlation coefficient 0.507.  That is, there is
 high possibility that the higher one score is, the higher the other
 score is.  Of course, as shown in Figure~\ref{fig:distribution}, there
 are some outliers, i.e., one score is high and the other score is low.
-On the othe hand, points of scores of these attributes concentrate on
+On the other hand, points of scores of these attributes concentrate on
 the point $(0, 0)$ on no target users, and have no correlation, with the
 correlation coefficient 0.232.
 
@@ -406,7 +406,7 @@ The first rows of lower half show the details of the results of the non
 target user @tenkijp, the account publishing weather information in Japan.
 In regard to common terms in profiles and location information, our
 method extracted terms which is not rare, e.g., Tokyo, hobby, music,
-and so on.  In tegard to common followees, our method also extracted
+and so on.  In regard to common followees, our method also extracted
 followees who is not rare, i.e., users who have a large number of followers,
 as with common terms, e.g., @tenkijp\_jishin, the account publishing
 earthquake information, @Kantei\_Saigai, the account publishing disaster
@@ -458,7 +458,7 @@ account is small.  The other non target users, @masason and
 \end{center}
 \end{table}
 
-In this subchapter, we show the results of the experiments classifiying
+In this subchapter, we show the results of the experiments classifying
 target users.  Table~\ref{table:Accuracy} shows the accuracy of four
 types of classification methods: a combination of two approaches and two
 classifiers, i.e., a 3-class SVM, 2 binary SVMs, a 3-class decision
@@ -520,13 +520,13 @@ users are not necessarily correlating.
 The 4th and 5th columns show the accuracy of each binary SVM used for
 2 binary SVMs: a binary SVM determining whether users publish
 information specified for certain topics or not, and that determining
-whetehr users publish information to the users specified extensionally
+whether users publish information to the users specified extensionally
 or not,
 respectively.  The accuracy of the former became the lowest when we
 removed the feature (i), i.e., numbers of followees and followers, and their
 ratio, and that of the latter became the lowest when we removed the
 feature (iv), i.e., partialness of topics in messages, which is the noticeable
-metter.  This suggests that partialness of topics is more useful for
-determing whether users publish information to the users specified
+matter.  This suggests that partialness of topics is more useful for
+determining whether users publish information to the users specified
 extensionally or not than whether users publish information specified
 for certain topics or not.
