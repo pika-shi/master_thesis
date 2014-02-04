@@ -1,42 +1,51 @@
 \section{Conclusion}
 \label{sec:Conclusion}
 
-In this study, we focus on the fact that the wideness of target scope of
-information publishing varies greatly among users bacause Twitter is
-used for various purpose, we proposed the method to classify Twitter
-users from the point of view of how widely the target scope of their
+In this study, we focused on the fact that the wideness of target scope of
+information publishing in Twitter varies greatly among users, and
+proposed the method to classify Twitter
+users from the point of view of how widely target scope of their
 information publishing is, i.e., whether they publish information to the
 public widely or publish information specified in certain users.
 
-First, we defined the target specificity of the Twitter user, as the
-measure of how much target scope of their information publishing is
+First, we defined target specificity of a user, as the
+measure of to what degree target scope of his information publishing is
 specified.  Second, based on this definition, we proposed the algorithm
-of computing a score of the target specificity.  In this algorithm, we
-focused on the two parameters: (a) whether followers of the user are
+computing a score of target specificity.  In this algorithm, we
+focused on two parameters: (a) whether followers of a user are
 consistent in a certain noticeable character or not, and (b) whether the
-follower set of the user is covered with consistency subsets which cover
-intermediately widely or not.  For computing the score, we proposed a
-couple of models computing a score of the consistency subset: the
-probabilistic model and the subtracting model, and we compared the above
-two models.  Furthermore, we proposed a couple of attributes for
-extracting consistency subsets from the follower set of the user: common
-terms in profiles and location information and common followees.  Then,
-we finally proposed the method of classifying Twitter users based on the
-score.  We conducted the experiment and our experimental results
-confirmed that these two techniques improve the precision.
+follower set of a user is covered with consistency subsets covering it
+intermediately widely or not.
+For computing the score, we proposed a couple of models computing
+scores of consistency subsets: the
+probabilistic model and the subtracting model, and a couple of
+attributes for extracting consistency subsets from the follower set of a
+user: common terms in profiles and location information and common
+followees.
+Then, we finally proposed four types of methods of classifying users
+into target users and non target user based on the score.  We conducted
+experiments to compare the performance of the methods, and the results
+suggested that the method using a binary SVM classified users with the
+highest accuracy.  The results also suggested that common terms in profiles
+and location information were more useful for extracting consistency
+subsets than common followees.
 
-%実験結果
+In addition, in this study, in regard to users classified into
+``target specificity is high'' by the above method, we proposed the
+the method of determining why their target
+specificity is high.  We first analysed the causes of high target
+specificity, and we classified users into three
+categories based on them: (1) their target specificity is high because
+they publish information specified for certain topics,
+(2) because they publish information to the users specified extensionally, and
+(3) in the cause of both (1) and (2).  Then, we constructed
+a couple of approaches to classify them into three categories: a 3-class
+classifier and 2 binary classifiers, based on various features of the
+user which potentially correlate with each cause.  Our experimental
+results suggested that a 2 binary SVM classified users with the highest
+accuracy. The results also suggested that the two causes (1) and (2)
+were highly independent of each other.
 
-In addition, in this study, in regard to Twitter users classified into
-``he target specificity is high”''y thehe above method, we proposed thy
-the above method, we proposed the method of determining why their target
-specificities are high.  We analysed the causes of high target
-specificity, and based on them, we classified the user into three
-categories: (1) they publish information specified for certain topics,
-(2) they publish information to the users specified extensionally, and
-(3) in the cause of both (1) and (2).  In this method, we constructed
-3-class classifiers which classify a user into the above three
-categories based on various features of the user which potentially
-correlate with each cause, and we determined why the target specificity
-is high by using them.
-%実験結果
+We believe that our proposed methods are applicable to some applications
+e.g., Twitter search systems, and they will enrich users' experience on
+Twitter.

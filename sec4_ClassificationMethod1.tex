@@ -278,7 +278,7 @@ subsets from the follower set of a user.  We explain these two
 attributes in the follow.
 
 \subsubsection{Common Terms in Profiles and Location Information}
-\label{subsec:Terms}
+\label{subsubsec:Terms}
 
 As the first attribute measuring consistency, we consider common terms
 included in profiles and local information of followers.
@@ -304,7 +304,7 @@ of $f$.  This is how we extract consistency subsets by using common
 terms in profiles and location information.}
 
 \subsubsection{Common Followees}
-\label{subsec:Followees}
+\label{subsubsec:Followees}
 
 As the second attribute measuring consistency, we consider common
 followees of followers.
@@ -332,7 +332,7 @@ which is consistent in the followee $e$ in $F_u$ by the formula below:
 consistency subsets by using common followees.}
 
 \subsection{Final Classification Based on Target Specificity}
-\label{subsubsec:Final Classification}
+\label{subsec:Final Classification}
 
 In this subchapter, we explain the method of computing target
 specificity of a user by using scores computed up to this
@@ -352,9 +352,9 @@ The $\mathit{SpecificityScore}_{{\mathit{att}}}(u)$ computed in
 Then, we compute a score of target specificity of $u$. We first
 compute $\mathit{SpecificityScore}_{{\mathit{term}}}(u)$, which is using
 common terms in profiles and location information as an attribute
-measuring consistency mentioned in \ref{subsec:Terms}, and
+measuring consistency mentioned in \ref{subsubsec:Terms}, and
 $\mathit{SpecificityScore}_{{\mathit{followee}}}(u)$, which is using
-common followees mentioned in \ref{subsec:Followees}.  Next, we propose
+common followees mentioned in \ref{subsubsec:Followees}.  Next, we propose
 a couple of approaches computing target specificity of $u$ by using the
 above two scores in the follow.
 
@@ -365,7 +365,7 @@ above two scores in the follow.
 
 In the first approach, we take the average and the maximum scores of two
 scores.  For comparison of two scores, we first normalize them by
-computing the deviation values.
+computing the deviation values of them.
 
 Then, we take the average score of two scores for target specificity of
 $u$ by the formula below:
@@ -403,7 +403,7 @@ approach taking the average and the maximum of two scores.
 In the second approach, we construct a binary classifier with the feature of
 two scores.  If target specificity of $u$ is high, we set
 $\mathit{TargetSpecificity}(u)$ to 1, and otherwise we set it to 0.  We
-adopt SVM and decision tree as a classifier.
+adopt SVM and the decision tree as a classifier.
 
 %This is how we compute a score of target specificity of $u$ using the
 %approach using a binary classifier with the feature of two scores.

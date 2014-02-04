@@ -1,26 +1,144 @@
 \begin{eabstract}
-This guide gives instructions for writing your B.E. or M.E. theses following
-the standard of the Department of Information Science.  The
-standard includes the structure and format which you must obey on writing
-your theses.
 
-This guide also explains how to use a \LaTeX{} style file for theses, named
-\verb|kuisthesis|, with which you can easily produce well-formatted results.
-Since this guide itself is produced with the style file, it will help you to
-refer its source file \verb|eguide.tex| as an example.
+With the widespread of the social media, such as blogs and social
+ network services (SNS), today we have become able to publish
+ information on the Web more easily than previously.  Especially
+ recently, microblogging services, which are a kind of blogs coupled
+ with some characteristics of SNS, has been growing explosively. As of
+ 2012 December, Twitter, which is one of the most popular microblogs, has
+ over 200 million active users in the world, and as of June, more than
+ 400 million messages are posted on it per day.
 
-Note for graduate students: This document is written for students of
-old graduate school of information science, not for graudate school of
-informatics. Writers of master thesis belonging to graduate school
-of informatics must obey rules given by each department.
+Twitter has many characteristics of conventional social medias, so it is
+ used for many purposes. Some publish information to the public
+ widely, some publish information specified for certain topics, and
+ some communicate with their friends. Because of this characteristic,
+ Twitter has attracted great attention as a new type of social media.
+
+As explained above, Twitter is used for various purposes.  As a result,
+ target specificity, the wideness of target scope of information
+ publishing, varies greatly among users.  So, in this study, we propose a
+ method to classify Twitter users based on target specificity of their
+ information publishing.  In the method, we focus on the followers of
+ the user, and classify him whether his followers are consistent in some
+ noticeable characters or not.  If his followers are consistent in some
+ noticeable characters, it suggests that his target specificity is high,
+ i.e., he publishes information in which particular users are
+ interested. On the other hand, if they are not consistent in any
+ noticeable characters, there is a high probability that the user is
+ followed by a wide variety of users and it suggests that his target
+ specificity is low, i.e., he publishes information in which the public
+ is interested.
+
+In addition, in this study, we focus on Twitter users whose target
+ specificity is high, and we propose the method to determine why their
+ target specificity is high.  In a large number of Twitter users, their
+ target specificity is high and the causes vary from user to user.  For
+ example, users publishing technical information about programming is
+ supposed to publish information to unspecified users, but their
+ target specificity is considered high because the topic of their
+ publishing information is specified to certain users, who are
+ interested in programming. And also, users communicating with their
+ friends or who announces to club members is supposed to publish
+ information to the users specified extensionally. So their target
+ specificity is supposed to be high, regardless of contents of their
+ publishing information.  In the method, first, we roughly classify
+ causes of target specificity into two categories: (1) because they
+ publish information specified for certain topics, and (2) because they
+ publish information to the users specified extensionally, based on our
+ analysis.  Then we construct classifiers which determine whether users
+ only belong to the category (1), only belong to the category (2), or
+ belong to both (1) and (2), based on various features which correlate
+ with each category.
+
+On the Web, it is hard to know what kinds of users each Web page targets
+ to.  But in Twitter, we can know what kind of users each user target to
+ by their follow relationships.  By using this relationships, we can
+ classify users based on the target specificity of their information
+ publishing.
+
+There are many existing studies on the classification of Twitter
+ users. These studies, however, do not concern about target scope of
+ information publishing of users. But Twitter is used for various
+ purposes, so the wideness of target scope of their information
+ publishing varies greatly among users.  Following this observation, we
+ propose a new classification scheme of Twitter users that focuses on
+ target specificity of their information publishing.
+
+The classification scheme of this study is supposed to apply to Twitter
+ search.  In current Twitter search, messages in search results have
+ various target scope of information publishing.  So it frequency
+ happens that messages of certain target scope we need are buried in
+ many other messages.  At that time, by using the classification of this
+ study, we can search messages based on what kinds of users they target
+ to.  So we can prevent messages we need from being buried in many other
+ messages and find messages we need easily.
+
+We implemented our methods with using real Twitter data, and our
+ experimental results confirmed that our proposed method is effective.
 
 \end{eabstract}
 
-\begin{jabstract}				% Abstract in Japanese
-この手引では，特別研究報告書および修士論文をどのような構成とするか，またどの
-ような形式で作成するかを説明したものである。また，当教室で定めた形式に則った
-論文を日本語\LaTeX を用いて作成するためのスタイル・ファイルである，
-\verb|kuisthesis|の使い方についても説明している。なお，この手引自体も
-\verb|kuisthesis|を用い，定められた形式に従って作成されているので，必要に応じ
-てソース・ファイル\verb|eguide.tex|を参照されたい。
+\begin{jabstract}
+ブログやSNSというソーシャルメディアの普及に伴い，誰もが簡単にWeb上で情報
+ を発信できるようになった．特に近年では，マイクロブログと呼ばれる，SNSの
+ 性質を併せ持ったブログサービスが，爆発的な成長を遂げている．最も普及し
+ ているマイクロブログの1つであるTwitterでは，2012年12月現在，ユーザ数が2
+ 億人を超えており，同年6月現在，1日に4億以上もの記事が投稿されていると言
+ われている．
+
+Twitterは，従来の多くのソーシャルメディアの性質を兼ね合わせており，その
+ 利用目的が多岐に渡っている．社会のニュースのように，広く一般のユーザが
+ 興味を示すような情報を発信するユーザもいれば，あるトピックに特化した情
+ 報を発信するユーザや，友人とのコミュニケーションを行うユーザもいたりと，
+ 多様な利用目的のユーザが混在している．このような性質のため，Twitterは現
+ 在，新たな情報発信メディアとして大きな注目を集めている．
+
+上記のように，Twitterは多様な目的で利用されるため，ユーザによって情報発
+ 信の対象範囲が様々である．本研究では，この点に着目し，Twitterユーザを，
+ 広く一般のユーザが興味を示す情報を発信するのか，それとも一部のユーザの
+ みが興味を示す情報を発信するのかという観点から分類する手法を提案する．
+ 提案手法では，ユーザのフォロワーに着目し，フォロワー内に何か一貫した傾
+ 向あるかどうかに基づいて分類を行う．もしあるユーザのフォロワー全体が何
+ か一貫した傾向を持っていれば，そのユーザは，ある特定のユーザが興味を示
+ す記事を投稿していると考えられる．逆に，フォロワー内の各ユーザの傾向が
+ ばらばらであれば，そのユーザは多様なユーザからフォローされている可能性
+ が高く，広く一般のユーザが興味を示す記事を投稿していると考えられる．
+
+さらに本研究では，上記の分類の結果，対象が一部のユーザに限定されていると
+ 判定されたユーザに関して，どのような要因でその対象範囲が限定されているの
+ かを判定する手法を提案する．情報発信の対象範囲が限定されているユーザは数
+ 多く存在するが，その要因は，ユーザによって様々である．例えば，プログラミ
+ ングに関する技術的な情報を発信するユーザは，情報自体は不特定のユーザに向
+ けて発信しているものの，その内容の専門性から対象範囲が限定されていると
+ 考えられる．また，友人とのコミュニケーションを行うユーザや，ある特定の
+ メンバーに向けてアナウンスを行うユーザなどは，その内容にかかわらず，ク
+ ローズドなコミュニティを対象に記事を投稿しているため，対象範囲が限定さ
+ れていると考えられる．提案手法では，まず，対象範囲が限定される要因を，
+ (1)あるトピックに特化した情報を発信している，(2)ユーザを外延的に特定し
+ て情報を発信している\,の大きく2つに分類する．そして，対象範囲が限定され
+ ている要因が(1)のみであるのか，(2)のみであるのか，それとも(1)と(2)の要
+ 因を併せ持つのかを判定する識別器を構成し，それらの要因を特徴付ける様々
+ な特徴量を学習させることにより，判定を行う．
+
+Webでは，各ページがどのようなユーザを対象としているのかは分かりにくい．
+ しかし，Twitterでは，そのフォロー関係を利用することで，あるユーザの記事
+ がどのようなユーザに読まれているのかが分かり，この情報を活用することで，
+ このように情報発信の対象範囲に基づいて分類することができる．
+
+Twitterユーザの分類に関する研究は盛んに行われている．通常，これらの研究
+ では，情報発信の対象範囲については考慮していない．しかし，Twitterは多様
+ な目的で利用されるため，ユーザによって情報発信の対象範囲が様々である．
+ そこでわれわれは，情報発信の対象範囲の広さに着目することで，既存の研究
+ とは異なる観点から分類を行った．
+
+本研究で実現する対象範囲によるユーザ分類は，Twitter検索に応用できると考
+ えられる．現在のTwitter検索は，検索結果には対象範囲の様々な記事が混ざっ
+ てしまっているため，自分の求めている対象範囲の記事が他の多くの記事に埋
+ もれてしまうといった事態が頻繁に発生する．そこで，本研究で実現するユー
+ ザ分類を利用することで，どのようなユーザを対象としている記事がほしいの
+ かを基に検索を行うことが可能になり，上記のような事態の防止につながる．
+
+提案手法を実装することで評価実験を行い，精度を測定した結果，提案手法が有
+ 効であることを確認した．また，その結果を基に考察を行った．
 \end{jabstract}
