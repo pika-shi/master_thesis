@@ -1,7 +1,7 @@
 \section{Classifying Users of High Target Specificity}
 \label{sec:ClassificationMethod2}
 
-In this chapter, in regards to target users classified by the method
+In this chapter, in regard to target users classified by the method
 mentioned in the above chapter, we explain the method of determining why
 their target specificity is high based on the result of our analysis
 mentioned in \ref{subsec:The Causes}.
@@ -12,10 +12,8 @@ mentioned in \ref{subsec:The Causes}.
 Here, we focus on the two causes of high target specificity
 mentioned in \ref{subsec:The Causes} as follows:
 \begin{description}
- \item[(1)] because they publish information specified for certain
-            topics, and
- \item[(2)] because they publish information to the users specified
-            extensionally,
+ \item[(1)] because they publish information on some specific topics, and
+ \item[(2)] because they publish information to a specific gropu of users,
 \end{description}
 
 \noindent{and we determine whether a user we intend to classify
@@ -25,8 +23,8 @@ We first determine various features of the user which potentially
 correlate with each cause.  Then, based on these features, we construct
 the classification method which classifies users into three categories:
 (1) their target specificity is high because they publish information
-specified for certain topics, (2) because they publish information to
-the users specified extensionally, and (3) in the cause of both (1) and
+on some specific topics, (2) because they publish information to
+a specific group of users, and (3) in the cause of both (1) and
 (2).  By classifying users with the above method, we determine why
 their target specificity is high.
 
@@ -38,25 +36,25 @@ couple of approaches to classify users into three categories.
 
 In the first approach, we construct a single 3-class classifier using
 one-against-one method.  Each result class corresponds to each category:
-(1), (2), and (3).  Figure~\ref{fig:classifier} (a) shows architecture
+(1), (2), and (3).  Figure~\ref{fig:classifier} (a) shows the architecture
 of a 3-class classifier.
 
 \subsubsection{2 Binary Classifiers}
 \label{subsubsec:2-binary}
 
 In the second approach, we construct 2 binary classifiers, each of
-which determines (i) whether users publish information specified for
-certain topics, and (ii) whether users publish information to the users
-specified extensionally, respectively.  When the results of two
+which determines (i) whether users publish information on some specific
+topics, and (ii) whether users publish information to a specific group
+of users, respectively.  When the results of two
 classifiers are \emph{yes} and \emph{no} respectively, we classify them
 into the category (1): their target specificity is high because they
-publish information specified for certain topics.  When the results are
+publish information on some specific topics.  When the results are
 \emph{no} and
 \emph{yes}, we classify them into the category (2): because they publish
-information to the users specified extensionally, and when the results
+information to a specific group of users, and when the results
 are \emph{yes}
 and \emph{yes}, we classify them into the category (3): in the cause of
-both (1) and (2).  Figure~\ref{fig:classifier} (b) shows architecture of
+both (1) and (2).  Figure~\ref{fig:classifier} (b) shows the architecture of
 2 binary classifiers.
 
 {\footnotesize
@@ -81,13 +79,13 @@ values between $0$ and $1$.
 \bf {\item[(i)] numbers of followees and followers, and their ratio}
 \end{description}
 
-If the user publishes information to unspecified users, there is high
-probability that a number of his followers is quite large or a
+If the user publishes information to unspecific users, there is a high
+possibility that a number of his followers is quite large or a
 number of his followees is quite small.  So in such a case, a ratio
 of a number of his followees to a number of his followers is
 supposed to be very small.  Furthermore, if the user publishes
 information to the closed users, i.e., his friends, his club
-members, and so on, there is high probability that numbers of his
+members, and so on, there is a high possibility that numbers of his
 followers and followees are very close because the user is supposed to
 have a reciprocal connection with them.  Thus, numbers of followees and
 followers, and their ratio are expected to be useful for determining why
@@ -101,7 +99,7 @@ important as the difference of small numbers of followers and followees.
 \bf {\item[(ii)] mutual follow ratio}
 \end{description}
 
-There is high probability that the user publishing information to the
+There is a high possibility that the user publishing information to the
 closed users has a large mutual follow ratio, i.e., a number of users
 with whom one follows one another is large, because the user is supposed
 to have a reciprocal connection with them.  Therefore, a mutual follow
@@ -112,14 +110,14 @@ specificity is high.
 \bf {\item[(iii)] frequency of replies by ``@''}
 \end{description}
 
-There is high probability that the user publishing information to the
+There is a high possibility that the user publishing information to the
 closed users has a high frequency of replies by ``@'', i.e., the user
 replies to his followers frequently. In regard to a mutual follow
 ratio mentioned in the feature (ii), there are some users publishing information to
 unspecified users in spite of a large mutual follow ratio, who are
-called socializers, but in regard to a frequency of replies by ``@'',
-there is high probability that the
-user publish information to the closed users.  This is because a high
+called socializers.  But in regard to a frequency of replies by ``@'',
+there is a high possibility that the
+user publishes information to the closed users.  This is because a high
 frequency of replies by ``@'' demonstrates that the user is supposed to
 have a reciprocal connection with them.  Therefore, a frequency of
 replies by ``@'' is expected to be useful for determining why their
@@ -129,7 +127,7 @@ target specificity is high.
 \bf {\item[(iv)] partialness of topics in messages}
 \end{description}
 
-In regard to a user publishing information specified for certain topics,
+In regard to a user publishing information on some specific topics,
 topics in his messages are often partial.  Thus, we use the
 partialness of topics in his messages as a feature for the
 classification.
@@ -139,11 +137,11 @@ $u$.  We first collect up to the latest 200 messages from each user we
 intend to classify.  Second,
 we extract noun phrases from them and we use their phrases as a corpus.
 We extract only noun phrases because they characterize contents of the
-messages strongly.  Then, in regard to each user $u$, we determine the
-topic of each message by
+messages more strongly than other phrases.  Then, in regard to each user
+$u$, we determine the topic of each message by
 using Latent Dirichlet Allocation (LDA), which is a generative
 probabilistic model for collections of discrete data such as text
-corpora, by using the above corpus.  Finally, we compute partialness of
+corpora, by using the above corpus.  Finally, we compute the partialness of
 topics in messages $\mathit{partialness}(u)$ as follows:
 
 \vspace{-3ex}

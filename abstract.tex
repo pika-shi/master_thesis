@@ -1,17 +1,17 @@
 \begin{eabstract}
 
-With the widespread of the social media, such as blogs and social
+With the widespread of social media, such as blogs and social
  network services (SNS), today we have become able to publish
  information on the Web more easily than previously.  Especially
  recently, microblogging services, which are a kind of blogs coupled
  with some characteristics of SNS, has been growing explosively. As of
- 2012 December, Twitter, which is one of the most popular microblogs, has
- over 200 million active users in the world, and as of June, more than
- 400 million messages are posted on it per day.
+ 2013 Octover, Twitter, which is one of the most popular microblogs, has
+ over 218 million active users in the world, and as of June, more than
+ 500 million messages are posted on it per day.
 
 Twitter has many characteristics of conventional social medias, so it is
- used for many purposes. Some publish information to the public
- widely, some publish information specified for certain topics, and
+ used for many purposes. Some publish information to the wide public,
+ some publish information on some specific topics, and
  some communicate with their friends. Because of this characteristic,
  Twitter has attracted great attention as a new type of social media.
 
@@ -25,7 +25,7 @@ As explained above, Twitter is used for various purposes.  As a result,
  noticeable characters, it suggests that his target specificity is high,
  i.e., he publishes information in which particular users are
  interested. On the other hand, if they are not consistent in any
- noticeable characters, there is a high probability that the user is
+ noticeable characters, there is a high possibility that the user is
  followed by a wide variety of users and it suggests that his target
  specificity is low, i.e., he publishes information in which the public
  is interested.
@@ -35,35 +35,34 @@ In addition, in this study, we focus on Twitter users whose target
  target specificity is high.  In a large number of Twitter users, their
  target specificity is high and the causes vary from user to user.  For
  example, users publishing technical information about programming is
- supposed to publish information to unspecified users, but their
+ supposed to publish information to unspecific users, but their
  target specificity is considered high because the topic of their
- publishing information is specified to certain users, who are
- interested in programming. And also, users communicating with their
- friends or who announces to club members is supposed to publish
+ publishing information is specified to certain users, i.e., users who
+ are interested in programming. And also, users communicating with their
+ friends or announcing to club members are supposed to publish
  information to the users specified extensionally. So their target
  specificity is supposed to be high, regardless of contents of their
  publishing information.  In the method, first, we roughly classify
  causes of target specificity into two categories: (1) because they
  publish information specified for certain topics, and (2) because they
- publish information to the users specified extensionally, based on our
- analysis.  Then we construct classifiers which determine whether users
- only belong to the category (1), only belong to the category (2), or
- belong to both (1) and (2), based on various features which correlate
- with each category.
+ publish information to the users specified extensionally.  Then we
+ construct classifiers which determine whether users  only belong to the
+ category (1), only belong to the category (2), or belong to both (1)
+ and (2), based on various features which correlate  with each category.
 
-On the Web, it is hard to know what kinds of users each Web page targets
- to.  But in Twitter, we can know what kind of users each user target to
- by their follow relationships.  By using this relationships, we can
- classify users based on the target specificity of their information
- publishing.
+On the Web, it is hard to know what kinds of users each Web page
+ targets to.  In Twitter, however, we can guess what kinds of users
+ each user targets to by examining the followers of the user.  By using
+ this information, we can determine whether a given user has high
+ target specificity or not.
 
 There are many existing studies on the classification of Twitter
  users. These studies, however, do not concern about target scope of
- information publishing of users. But Twitter is used for various
- purposes, so the wideness of target scope of their information
- publishing varies greatly among users.  Following this observation, we
- propose a new classification scheme of Twitter users that focuses on
- target specificity of their information publishing.
+ information publishing.  But Twitter is used for various purposes, so
+ the wideness of target scope of their information publishing varies
+ greatly among users.  Following this observation, we propose a new
+ classification scheme of Twitter users that focuses on target
+ specificity of their information publishing.
 
 The classification scheme of this study is supposed to apply to Twitter
  search.  In current Twitter search, messages in search results have
@@ -112,19 +111,19 @@ Twitterは，従来の多くのソーシャルメディアの性質を兼ね合�
  ングに関する技術的な情報を発信するユーザは，情報自体は不特定のユーザに向
  けて発信しているものの，その内容の専門性から対象範囲が限定されていると
  考えられる．また，友人とのコミュニケーションを行うユーザや，ある特定の
- メンバーに向けてアナウンスを行うユーザなどは，その内容にかかわらず，ク
- ローズドなコミュニティを対象に記事を投稿しているため，対象範囲が限定さ
- れていると考えられる．提案手法では，まず，対象範囲が限定される要因を，
- (1)あるトピックに特化した情報を発信している，(2)ユーザを外延的に特定し
- て情報を発信している\,の大きく2つに分類する．そして，対象範囲が限定され
- ている要因が(1)のみであるのか，(2)のみであるのか，それとも(1)と(2)の要
- 因を併せ持つのかを判定する識別器を構成し，それらの要因を特徴付ける様々
- な特徴量を学習させることにより，判定を行う．
+ クラブメンバーに向けてアナウンスを行うユーザなどは，その内容にかかわら
+ ず，クローズドなコミュニティを対象に記事を投稿しているため，対象範囲が
+ 限定されていると考えられる．提案手法では，まず，対象範囲が限定される要
+ 因を，(1)あるトピックに特化した情報を発信している，(2)ユーザを外延的に
+ 特定して情報を発信している\,の大きく2つに分類する．そして，対象範囲が限
+ 定されている要因が(1)のみであるのか，(2)のみであるのか，それとも(1)と
+ (2)の両方の要因を併せ持つのかを判定する識別器を構成し，それらの要因を特
+ 徴付ける様々な特徴量を学習させることにより，判定を行う．
 
 Webでは，各ページがどのようなユーザを対象としているのかは分かりにくい．
  しかし，Twitterでは，そのフォロー関係を利用することで，あるユーザの記事
  がどのようなユーザに読まれているのかが分かり，この情報を活用することで，
- このように情報発信の対象範囲に基づいて分類することができる．
+ このように情報発信の対象範囲の広さに基づいて分類することができる．
 
 Twitterユーザの分類に関する研究は盛んに行われている．通常，これらの研究
  では，情報発信の対象範囲については考慮していない．しかし，Twitterは多様
@@ -133,12 +132,13 @@ Twitterユーザの分類に関する研究は盛んに行われている．通�
  とは異なる観点から分類を行った．
 
 本研究で実現する対象範囲によるユーザ分類は，Twitter検索に応用できると考
- えられる．現在のTwitter検索は，検索結果には対象範囲の様々な記事が混ざっ
- てしまっているため，自分の求めている対象範囲の記事が他の多くの記事に埋
+ えられる．現在のTwitter検索は，様々な対象範囲の記事が検索結果に混ざって
+ しまっているため，自分の求めている対象範囲の記事が他の多くの記事に埋
  もれてしまうといった事態が頻繁に発生する．そこで，本研究で実現するユー
  ザ分類を利用することで，どのようなユーザを対象としている記事がほしいの
  かを基に検索を行うことが可能になり，上記のような事態の防止につながる．
 
 提案手法を実装することで評価実験を行い，精度を測定した結果，提案手法が有
  効であることを確認した．また，その結果を基に考察を行った．
+
 \end{jabstract}

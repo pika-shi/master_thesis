@@ -11,20 +11,20 @@ real-time nature of migroblogs\cite{takemura2012tweet,mathioudakis2010twittermon
 
 In this study, we focus on the fact that Twitter is used for various
 purposes. We attempt to classify Twitter users based on the
-wideness of target scope of their information publishing, and apply this
+breadth of target scope of their information publishing, and apply this
 classification scheme on Twitter search and so on.  We explain the
 following previous studies: studies about the purpose of use of
-microblogs in \ref{subsec:Purpose of Use}, studies of
+Twitter in \ref{subsec:Purpose of Use}, studies of
 classifying Twitter users and measuring their influence in
-\ref{subsec:Twitter User}, studies useful for finding microblogging
-messages related to only certain Twitter users in \ref{subsec:Some
-User}, and studies about Twitter search in \ref{subsec:Twitter Search}.
+\ref{subsec:Twitter User}, studies useful for finding messages related
+to only certain Twitter users in \ref{subsec:Some User}, and studies
+about Twitter search in \ref{subsec:Twitter Search}.
 We make the position of this study clear by introducing these studies.
 
-\subsection{Purpose of Use of Microblogs}
+\subsection{Purpose of Use of Twitter}
 \label{subsec:Purpose of Use}
 
-There has been many studies about the purpose of use of microblogs. Java
+There has been many studies about the purpose of use of Twitter. Java
 et al.\cite{java2007we} analyzed the topological and
 geographical structure of Twitter's social network and attempted to
 understand the user intentions and community structure in microblogging
@@ -36,7 +36,7 @@ disseminating or gathering information, and in its follower-following
 topology analysis they have found a non-power-law follower distribution,
 a short effective diameter, and low reciprocity, which all mark a
 deviation from known characteristics of human social networks.  There
-are many more studies about the purpose of use of microblogs\cite{wu2011says,zhao2009and}.
+are many more studies about the purpose of use of Twitter\cite{wu2011says,zhao2009and}.
 
 Ehrlich et al.\cite{ehrlich2010microblogging} conducted a
 content analysis and examined the use of public microblogs
@@ -44,7 +44,7 @@ content analysis and examined the use of public microblogs
 microblogs (in the workspace).  As a result, there were
 significant differences in content.  The internal microblogs
 were generally used to solicit technical assistance or as part of a
-conservation.  The public microblogs were used for status
+conservation, and the public microblogs were used for status
 updates and to share general information.
 
 In recent years, Twitter, one of public microblogs, is often
@@ -55,8 +55,8 @@ this study focuses on the fact that we use Twitter for various purposes.
 \subsection{Classification of Twitter Users and Measuring their Influence}
 \label{subsec:Twitter User}
 
-There are many studies focusing on Twitter users, e.g., studies of
-classification them from various point of view, and studies which measure
+There are many studies focusing on Twitter users, e.g., studies which
+classify them from various point of view, and studies which measure
 their influence.
 
 Studies focusing on the classification of Twitter users are performed
@@ -82,11 +82,11 @@ account with a purpose for advertising or spreading information such as
 a shop, a singer, a news agency, and so on.  On the other hand, a closed
 account is the
 account with a purpose for making friends or communication such as a
-user who publishes messages about daily log, feeling show, and so on.
+user publishing messages about daily log, feeling show, and so on.
 This classification scheme is close to ours, but does not coincide with
-ours because open accounts don't often publish information to the public
-widely.  For example, a user who publishes very technical information
-about programming to unspecified users is an open account though he is a
+ours because open accounts do not often publish information to the wide
+public.  For example, a user publishing technical information
+about programming to unspecific users is an open account though he is a
 target user.
 
 In microblogs like Twitter or other social network services
@@ -107,13 +107,13 @@ users.  Jianshu et al.\cite{weng2010twitterrank} focused on the problem of
 identifying influential users of microblogs.  Cha et
 al.\cite{cha2010measuring} analyzed the influence of them
 by employing three measures that capture different perspectives:
-in degree, retweets, and mentions.  Then they measured the dynamics of
+indegree, retweets, and mentions.  Then they measured the dynamics of
 influence across topic and time.  If target specificity of Twitter users
 defined in this study is high, there is a high probability that they
 have a big influence on Twitter, but how low target specificity of a
 user is does not necessarily coincide with how big his influence is.
 
-\subsection{Find Messages Related to Some Twitter Users}
+\subsection{Find Messages Related to Certain Twitter Users}
 \label{subsec:Some User}
 
 There are also studies useful for finding of microblogging messages
@@ -124,27 +124,27 @@ messages in Twitter and detecting occurrences of a specific kind of event
 in the real world, such as earthquakes or typhoons.  They produced a
 probabilistic spatiotemporal model for the target event that can find
 the center and the trajectory of the event location.  Ikawa et
-al.\cite{ikawa2012location} attempt to discover the location where a
+al.\cite{ikawa2012location} attempted to discover the location where a
 message was generated by using its textual content.  They learned
 associations between a location and relevant keywords from past
 messages, and guessed where a new message came from.  It is able to be
 said that these studies are useful for finding messages in Twitter
 related to certain geographical areas.
 
-Sriram et al.\cite{sriram2010short} proposed approach effectively
+Sriram et al.\cite{sriram2010short} proposed approach which effectively
 classifies the message to a predefined set of generic classes such as
 News, Events, Opinions, Deals, and Private Messages.  They proposed to
 use a small set of domain-specific features extracted from the user's
 profile and text.  Nishida et al.\cite{nishida2011tweet} proposed a
-method that uses data compression for classifying an unseen tweet as
+method which uses data compression for classifying an unseen tweet as
 being related to an interesting topic or not.  It is able to be
-said that these studies are useful for finding messages in Twitter
-specified to certain topics.
+said that these studies are useful for finding messages to some specific
+topics in Twitter.
 
-As mentioned above, there are many studies useful for finding microblogging
-messages related to only a part of Twitter users in various points of
+As mentioned above, there are many studies useful for finding microblogs
+related to only a part of Twitter users in various points of
 view.  But these points of view exist in great number, so it is not an
-efficient approach to find these messages from each point of view.
+effective approach to find these messages from each point of view.
 Thus in this study, we attempted to measure Twitter users' target
 specificity of information publishing in an integrated way.  In
 addition, we roughly classified various causes of target specificity
@@ -155,7 +155,7 @@ into two categories.
 
 The characteristic of search on microblogs is different
 from that of Web search\cite{broder2002taxonomy} in that search on
-microblogging services can get information in real
+microblogs can get information in real
 time\cite{busch2012earlybird} and not only information published by the
 mass media but also much casual information published by
 individuals\cite{java2007we}.  Thus, a purpose of use of search on
@@ -173,7 +173,7 @@ Massoudi et al.\cite{massoudi2011incorporating} proposed a retrieval
 model for searching messages on microblogs for a given topic
 of interest and a dynamic query expansion model for messages retrieval.
 And Nagamoti et al.\cite{nagmoti2010ranking} described several
-strategies for ranking messages of microblogging services in a
+strategies for ranking messages of microblogs in a
 real-time search engine.
 
 As mentioned above, there are many studies about search on microblogs,
@@ -181,5 +181,5 @@ and contents of them are greatly various.  In this study, we
 focus on the purpose of use of microblogs, and attempt to
 apply it to Twitter Search.  It is able to be said that this study also
 focuses on search on microblogs just like studies explained
-above, but there has not been studies based on Twitter user's target specificity
-of information publishing so far.
+above, but there has not been studied based on Twitter user's target
+specificity of information publishing so far.

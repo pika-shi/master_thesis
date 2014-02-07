@@ -1,16 +1,16 @@
 \section{Conclusion}
 \label{sec:Conclusion}
 
-In this study, we focused on the fact that the wideness of target scope of
+In this study, we focused on the fact that the breadth of target scope of
 information publishing in Twitter varies greatly among users, and
 proposed the method to classify Twitter
-users from the point of view of how widely target scope of their
+users from the point of view of how broad target scope of their
 information publishing is, i.e., whether they publish information to the
-public widely or publish information specified in certain users.
+wide public or publish information to specific groups of users.
 
 First, we defined target specificity of a user, as the
-measure of to what degree target scope of his information publishing is
-specified.  Second, based on this definition, we proposed the algorithm
+measure of to what extent target scope of his information publishing is
+specific.  Second, based on this definition, we proposed the algorithm
 computing a score of target specificity.  In this algorithm, we
 focused on two parameters: (a) whether followers of a user are
 consistent in a certain noticeable character or not, and (b) whether the
@@ -23,7 +23,7 @@ attributes for extracting consistency subsets from the follower set of a
 user: common terms in profiles and location information and common
 followees.
 Then, we finally proposed four types of methods of classifying users
-into target users and non target user based on the score.  We conducted
+into target users and non target user based on the above scores.  We conducted
 experiments to compare the performance of the methods, and the results
 suggested that the method using a binary SVM classified users with the
 highest accuracy.  The results also suggested that common terms in profiles
@@ -35,10 +35,11 @@ In addition, in this study, in regard to users classified into
 the method of determining why their target
 specificity is high.  We first analysed the causes of high target
 specificity, and we classified users into three
-categories based on them: (1) their target specificity is high because
-they publish information specified for certain topics,
-(2) because they publish information to the users specified extensionally, and
-(3) in the cause of both (1) and (2).  Then, we constructed
+categories based on them: (1) topic specificity, i.e., their target
+specificity is high because they publish information to some specific topics,
+(2) user specificity, i.e., their target specificity is high because
+they publish information to a specific group of users, and
+(3) in the causes of both (1) and (2).  Then, we constructed
 a couple of approaches to classify them into three categories: a 3-class
 classifier and 2 binary classifiers, based on various features of the
 user which potentially correlate with each cause.  Our experimental
